@@ -1,0 +1,7 @@
+[
+    {
+        "short_name": "calendar",
+        "name": "Fraværskalender",
+        "script": "http://localhost:3001/static/js/app.bundle.js"
+    }
+]

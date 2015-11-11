@@ -1,0 +1,8 @@
+extends ./layout.jade
+
+block content
+    h3 Tilgjengelige apps
+    ul
+        each app in apps
+            li
+                a(href=app.short_name)= app.name

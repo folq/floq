@@ -2,33 +2,58 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 
-var app = express();
+var auth = require('./auth.js');
 
-// Session config.
+/* SETUP */
+var app = express();
+app.use('/static', express.static('static'));
+app.set('view engine', 'jade');
 app.use(session({
     resave: false,
     saveUninitialized: false,
     secret: "TODO: DO THIS RIGHT"
     // TODO: cookie: { secure: true }
 }));
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', function(req, res) {
-    //if (!req.session.id_token) res.redirect('/');
-    res.send('TOKEN: ' + req.session.id_token);
+
+/* PUBLIC PATHS */
+app.get('/login', (req, res) => {
+    res.render('login');
 });
 
-app.get('/login', function(req, res) {
-    res.sendFile(__dirname + '/views/login.html');
+app.post('/login', (req, res) => {
+    auth.authenticate(req)
+        .then(
+            () => res.redirect('/'),
+            (err) => res.status(401).send(err)
+        );
 });
 
-app.post('/login', function(req, res) {
-    req.session.id_token = req.body.id_token;
-    res.redirect('/');
+
+/* PRIVATE PATHS */
+app.use(auth.requiresLogin);
+
+// Get all registered apps.
+var appRegs = require('./apps.json');
+
+app.get('/', (req, res) => {
+    res.render('index', {title: 'Forside', apps: appRegs});
 });
 
-var server = app.listen(3000, function() {
+// Set up paths for each registered app.
+appRegs.forEach((appReg) => {
+    app.get('/'+appReg.short_name, (req, res) => {
+        res.render('app', {
+            title: appReg.name,
+            script: appReg.script,
+            id_token: req.session.id_token
+        });
+    });
+});
+
+/* START SERVER */
+var server = app.listen(3000, () => {
     var host = server.address().address;
     var port = server.address().port;
 
