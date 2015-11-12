@@ -405,6 +405,15 @@ animation-iteration-count:infinite;
     width: 10px;
 }
 
+.all-calendar-inner tr {
+    height: 35px;
+}
+/*
+#all-calendar-table tr {
+    height: 35px;
+}
+*/
+
 .employee-name {
     position: absolute;
     left: 0;
