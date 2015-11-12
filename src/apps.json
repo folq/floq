@@ -1,5 +1,11 @@
 [
     {
+        "short_name": "employees",
+        "name": "Ansattliste",
+        "script": "http://localhost:8081/dist/app.bundle.js"
+    },
+
+    {
         "short_name": "calendar",
         "name": "Fraværskalender",
         "script": "http://localhost:3001/static/js/app.bundle.js"
