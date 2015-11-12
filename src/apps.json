@@ -2,12 +2,12 @@
     {
         "short_name": "employees",
         "name": "Ansattliste",
-        "script": "http://localhost:8081/dist/app.bundle.js"
+        "script": "http://jdo-employees.herokuapp.com/dist/app.bundle.js"
     },
 
     {
         "short_name": "calendar",
         "name": "Fraværskalender",
-        "script": "http://localhost:3001/static/js/app.bundle.js"
+        "script": "http://jdo-calendar.herokuapp.com/static/js/app.bundle.js"
     }
 ]
