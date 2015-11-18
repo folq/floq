@@ -8,5 +8,6 @@ block scripts
         Making the google id_token available for apps,
         until we get a better solution for auth.
     script(type='text/javascript').
-        var id_token = '#{id_token}';
+        window.id_token = '#{id_token}';
+        window.config = !{config};
     script(src='#{script}')
