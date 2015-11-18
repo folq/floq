@@ -4,6 +4,7 @@ html, body {
 	margin:0;
 	padding:0;
 	background-color: #f5f6f5;
+	font-family:"museo-sans",sans-serif;
 	font-size: 16px;
 
 font-variant-ligatures: common-ligatures;
@@ -139,8 +140,8 @@ a p 					{margin: 0;}
 .thirdspacer	{width: 2%;height: 2em;}
 .fourth			{width: 20%;margin: 0 2.5%;}
 .tenth			{width: 10%;}
-.article        {width: 640px; }
-.articlehalf    {width: 50%; }
+.article		{width: 640px; }
+.articlehalf	{width: 50%; }
 
 /* TYPO */
 .centered	{text-align: center;}
@@ -177,8 +178,6 @@ h1{
 	margin:0 0 0.5em 0;
 	padding:0;
 }
-
-#menu,.annonselink,.articlelink,h2,h3,h4,h5,p,li{font-family:"museo-sans",sans-serif;}
 
 h2{
 	font-size: 2em;
@@ -224,29 +223,29 @@ p{
 }
 
 .article ul{
-    font-size: 1em;
-    line-height: 1.5em;
-    letter-spacing: 0.05em;
-    margin-top: 0em;
-    margin-bottom: 2em;
+	font-size: 1em;
+	line-height: 1.5em;
+	letter-spacing: 0.05em;
+	margin-top: 0em;
+	margin-bottom: 2em;
 }
 
 .article li{
-    margin: 0 0 0.7em 0;
+	margin: 0 0 0.7em 0;
 }
 
 .article h2{
-    min-height: 1em;
+	min-height: 1em;
 }
 
 .articlelink {
-    padding: 1em 1.5em;
-    font-size: 1em;
-    line-height: 1.25em;
-    font-weight: bold;
-    letter-spacing: 0em;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+	padding: 1em 1.5em;
+	font-size: 1em;
+	line-height: 1.25em;
+	font-weight: bold;
+	letter-spacing: 0em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
 }
 
 /* ELEMENTS */
@@ -350,10 +349,10 @@ animation-iteration-count:infinite;
 
 /* MAP */
 .gmnoprint a, .gmnoprint span {
-    display:none;
+	display:none;
 }
 .gmnoprint div {
-    background:none !important;
+	background:none !important;
 }
 
 
@@ -374,63 +373,102 @@ animation-iteration-count:infinite;
 	.kontaktarea{height: auto;min-height: 10em;}
 	#map{min-height: 10em;}
 	#menu{display: none;}
-    .article{width: 100%;}
+	.article{width: 100%;}
 }
 
 /* APP-stuff */
 
+/* calendar */
 .selectors {
-    position: fixed;
-    top: 6em;
-    width: 90%;
-    background-color: #f5f6f5;
+	position: fixed;
+	top: 6em;
+	width: 90%;
+	background-color: #f5f6f5;
 }
 
 #all-calendar-table {
-    /*table-layout: fixed; /* maybe remove for gaps */
-    width: 100%;
+	/*table-layout: fixed; /* maybe remove for gaps */
+	width: 100%;
 }
 
-#all-calendar-table td, th {
-    /*vertical-align: top;*/
-    border-top: 1px solid #ccc;
-    padding: 5px;
+#all-calendar-table td, #all-calendar-table th {
+	/*vertical-align: top;*/
+	border-top: 1px solid #ccc;
+	padding: 5px;
 }
 
 #all-calendar-table th {
-    width: 100px;
+	width: 100px;
 }
 
 #all-calendar-table td {
-    width: 10px;
+	width: 10px;
 }
 
 .all-calendar-inner tr {
-    height: 35px;
+	height: 35px;
 }
 /*
 #all-calendar-table tr {
-    height: 35px;
+	height: 35px;
 }
 */
 
 .employee-name {
-    position: absolute;
-    left: 0;
-    width: 100px;
-/*    background: white;*/
+	position: absolute;
+	left: 0;
+	width: 100px;
+/*	background: white;*/
 }
 
 .month-header {
-    text-align: left;
+	text-align: left;
 }
 
 .all-calendar-outer {
-    position: relative;
+	position: relative;
 }
 
 .all-calendar-inner {
-    overflow-x: scroll;
-    overflow-y: visible;
-    margin-left: 100px;
+	overflow-x: scroll;
+	overflow-y: visible;
+	margin-left: 100px;
+}
+
+/* employees */
+.employeelist {
+	margin-top: 0.5em;
+}
+
+#employeetable {
+	width: 100%;
+	text-align: left;
+	border: none;
+}
+
+.form-row {
+	display: table-row;
+}
+
+.form-group {
+	display: table-cell;
+}
+
+.form-group label {
+	width: 15rem;
+	display: inline-block;
+	font-weight: 700;
+}
+
+.appbutton {
+	padding: 0.5em 1em;
+	font-size: 0.9em;
+	line-height: 1.25em;
+	font-weight: bold;
+	letter-spacing: 0em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin: 1em;
+	border: none;
+	cursor: pointer;
 }
