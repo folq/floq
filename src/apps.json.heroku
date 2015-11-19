@@ -11,9 +11,9 @@
     {
         "short_name": "calendar",
         "name": "Fraværskalender",
-        "script": "http://jdo-calendar.herokuapp.com/static/js/app.bundle.js",
+        "script": "http://blank-calendar.herokuapp.com/static/js/app.bundle.js",
         "config": {
-            "apiUri": "http://jdo-calendar.herokuapp.com/api"
+            "apiUri": "http://blank-calendar.herokuapp.com/api"
         }
     }
 ]
