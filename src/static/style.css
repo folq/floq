@@ -387,38 +387,22 @@ animation-iteration-count:infinite;
 }
 
 #all-calendar-table {
-	/*table-layout: fixed; /* maybe remove for gaps */
 	width: 100%;
 }
 
 #all-calendar-table td, #all-calendar-table th {
-	/*vertical-align: top;*/
-	border-top: 1px solid #ccc;
 	padding: 5px;
-}
-
-#all-calendar-table th {
-	width: 100px;
-}
-
-#all-calendar-table td {
-	width: 10px;
 }
 
 .all-calendar-inner tr {
 	height: 35px;
 }
-/*
-#all-calendar-table tr {
-	height: 35px;
-}
-*/
 
 .employee-name {
 	position: absolute;
 	left: 0;
-	width: 100px;
-/*	background: white;*/
+	width: 10em;
+	text-align: left;
 }
 
 .month-header {
@@ -432,7 +416,7 @@ animation-iteration-count:infinite;
 .all-calendar-inner {
 	overflow-x: scroll;
 	overflow-y: visible;
-	margin-left: 100px;
+	margin-left: 10em;
 }
 
 /* employees */
