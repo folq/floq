@@ -6,6 +6,7 @@ var auth = require('./auth.js');
 
 /* SETUP */
 var app = express();
+app.use(require('./herokuHttpsRedirect.js'));
 app.use('/static', express.static('static'));
 app.set('view engine', 'jade');
 app.use(session({
