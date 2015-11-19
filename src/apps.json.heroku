@@ -4,7 +4,7 @@
         "name": "Ansattliste",
         "script": "http://jdo-employees.herokuapp.com/dist/app.bundle.js",
         "config": {
-            "apiUri": "http://jdo-employees.herokuapp.com/api"
+            "apiUri": "https://jdo-employees.herokuapp.com/api"
         }
     },
 
