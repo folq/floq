@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 
 // Set up paths for each registered app.
 appRegs.forEach((appReg) => {
-    app.get('/'+appReg.short_name, (req, res) => {
+    app.get('/'+appReg.short_name+'*', (req, res) => {
         res.render('app', {
             title: appReg.name,
             script: appReg.script,
