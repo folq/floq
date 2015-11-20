@@ -2,7 +2,7 @@
     {
         "short_name": "employees",
         "name": "Ansattliste",
-        "script": "http://jdo-employees.herokuapp.com/dist/app.bundle.js",
+        "script": "https://jdo-employees.herokuapp.com/dist/app.bundle.js",
         "config": {
             "apiUri": "https://jdo-employees.herokuapp.com/api"
         }
