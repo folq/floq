@@ -26,7 +26,11 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
     auth.authenticate(req)
         .then(
-            () => res.redirect(req.query.to ? req.query.to : '/'),
+            () => {
+                res.redirect(
+                    auth.validRedirect(app, req.query.to) ? req.query.to : '/'
+                );
+            },
             (err) => res.status(401).send(err)
         );
 });

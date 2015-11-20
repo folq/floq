@@ -55,4 +55,18 @@ function requiresLogin(req, res, next) {
     res.redirect('/login?to=' + req.originalUrl);
 }
 
-module.exports = {authenticate, requiresLogin};
+function validRedirect(app, path) {
+    var routes = app._router.stack
+        .filter((layer) => layer.route !== undefined);
+
+    for (var route in routes) {
+        var re = routes[route].regexp;
+        if (re.test(path)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+module.exports = {authenticate, requiresLogin, validRedirect};
