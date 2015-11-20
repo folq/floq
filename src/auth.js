@@ -52,7 +52,7 @@ function requiresLogin(req, res, next) {
         return;
     }
 
-    res.redirect('/login');
+    res.redirect('/login?to=' + req.originalUrl);
 }
 
 module.exports = {authenticate, requiresLogin};

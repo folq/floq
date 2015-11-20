@@ -20,13 +20,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 /* PUBLIC PATHS */
 app.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', {to: req.query.to});
 });
 
 app.post('/login', (req, res) => {
     auth.authenticate(req)
         .then(
-            () => res.redirect('/'),
+            () => res.redirect(req.query.to ? req.query.to : '/'),
             (err) => res.status(401).send(err)
         );
 });

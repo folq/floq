@@ -12,7 +12,7 @@ html
                 // POST session to backend, which does the redirect.
                 var form = document.createElement('form');
                 form.setAttribute('method', 'POST');
-                form.setAttribute('action', '/login');
+                form.setAttribute('action', '/login?to=#{to}');
 
                 var token_field = document.createElement('input');
                 token_field.setAttribute('type', 'hidden');
