@@ -1,3 +1,2 @@
-cd src/
-cp apps.json.heroku apps.json
+sh: cp src/apps.json.heroku src/apps.json
 web: npm start
