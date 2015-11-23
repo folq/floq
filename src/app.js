@@ -3,12 +3,16 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 
 var auth = require('./auth.js');
+var common = require('common');
 
 /* SETUP */
 var app = express();
-app.use(require('./herokuHttpsRedirect.js'));
-app.use('/static', express.static('static'));
+app.set('views', 'src/views');
 app.set('view engine', 'jade');
+
+// Redirect all requests to https
+app.use(common.herokuHttpsRedirect);
+app.use('/static', express.static('src/static'));
 app.use(session({
     resave: false,
     saveUninitialized: false,
@@ -17,16 +21,17 @@ app.use(session({
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
 /* PUBLIC PATHS */
 app.get('/login', (req, res) => {
     res.render('login', {to: req.query.to});
 });
 
 app.post('/login', (req, res) => {
-    auth.authenticate(req)
+    common.authenticate(req.body.id_token)
         .then(
-            () => {
+            (data) => {
+                req.session.id_token = req.body.id_token;
+                req.session.google_data = data;
                 res.redirect(
                     auth.validRedirect(app, req.query.to) ? req.query.to : '/'
                 );
