@@ -27,7 +27,7 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    common.authenticate(req.body.id_token)
+    common.auth.authenticate(req.body.id_token)
         .then(
             (data) => {
                 req.session.id_token = req.body.id_token;
