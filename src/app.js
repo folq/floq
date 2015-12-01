@@ -58,7 +58,8 @@ appRegs.forEach((appReg) => {
             title: appReg.name,
             script: appReg.script,
             id_token: req.session.id_token,
-            config: JSON.stringify(appReg.config)
+            config: JSON.stringify(appReg.config),
+            apps: appRegs
         });
     });
 });
