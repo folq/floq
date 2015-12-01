@@ -1,0 +1,28 @@
+td.icon-cell {
+	padding-top: 6px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.content-box {
+	padding: 0 24px 24px;
+}
+
+.form-element {
+	margin-right: 10px;
+}
+
+.main-content {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.data-group {
+    min-width: 180px;
+}
+
+.data-label {
+    font-weight: bold;
+}
