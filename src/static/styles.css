@@ -26,3 +26,100 @@ td.icon-cell {
 .data-label {
     font-weight: bold;
 }
+
+.top-fixed-menu {
+    position: fixed;
+    top: 64px;
+}
+
+.month-cal-table {
+    text-align: center;
+    table-layout: fixed;
+    font-size: 13px;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+.day-col {
+    width: 48px;
+}
+
+.month-cal-table th {
+    vertical-align: bottom;
+    font-weight: 700;
+    color: rgba(0, 0, 0, .54);
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+.month-cal-table tr {
+    height: 48px;
+    border: 1px solid rgba(0, 0, 0, .12);
+}
+
+.month-cal-table td {
+    border: 1px solid rgba(0, 0, 0, .12);
+    cursor: pointer;
+}
+
+.side-scroll-table-outer {
+    position: relative;
+}
+
+.side-scroll-table-inner {
+    overflow-x: scroll;
+    overflow-y: visible;
+    margin-left: 10em;
+    font-size: 13px;
+}
+
+.side-scroll-table-inner table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.side-scroll-table-inner tr {
+    height: 24px;
+}
+
+.side-scroll-table-inner thead {
+    vertical-align: bottom;
+    font-weight: 700;
+    color: rgba(0, 0, 0, .54);
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+.side-scroll-table-inner td {
+    border: 1px solid rgba(0, 0, 0, .12);
+}
+
+.side-scroll-table-inner th {
+    border: 1px solid rgba(0, 0, 0, .12);
+}
+
+.side-scroll-table-cell {
+    width: 21px;
+}
+
+.side-scroll-table-left-header {
+    position: absolute;
+    left: 0;
+    width: 10em;
+    text-align: left;
+    padding: 5px;
+    border: none !important;
+    vertical-align: center;
+}
+
+.side-scroll-table-top-header-row {
+    height: 45px !important;
+    vertical-align: bottom;
+    text-align: left;
+}
+
+.side-scroll-table-top-header-row th {
+    padding-left: 10px;
+    padding-bottom: 8px;
+}
