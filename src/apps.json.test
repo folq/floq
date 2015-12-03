@@ -1,0 +1,19 @@
+[
+    {
+        "short_name": "employees",
+        "name": "Ansattliste",
+        "script": "https://jdo-employees-test.herokuapp.com/dist/app.bundle.js",
+        "config": {
+            "apiUri": "https://jdo-employees-test.herokuapp.com/api"
+        }
+    },
+
+    {
+        "short_name": "calendar",
+        "name": "Fraværskalender",
+        "script": "https://blank-calendar-test.herokuapp.com/static/js/app.bundle.js",
+        "config": {
+            "apiUri": "https://blank-calendar-test.herokuapp.com/api"
+        }
+    }
+]

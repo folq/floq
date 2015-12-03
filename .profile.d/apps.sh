@@ -1,1 +1,1 @@
-cp src/apps.json.heroku src/apps.json
+cp src/apps.json.$ENV src/apps.json
