@@ -15,5 +15,14 @@
         "config": {
             "apiUri": "https://blank-calendar.herokuapp.com/api"
         }
+    },
+
+    {
+        "short_name": "logo",
+        "name": "Logogenerator",
+        "script": "https://blank-logogen.herokuapp.com/static/app.js",
+        "config": {
+            "diamondUri": "https://blank-logogen.herokuapp.com/diamant.svg"
+        }
     }
 ]
