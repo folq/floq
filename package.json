@@ -14,6 +14,7 @@
     "common": "joddski/node-common#master",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
+    "google-auth-library": "^0.9.7",
     "jade": "^1.11.0",
     "promise": "^7.0.4"
   }

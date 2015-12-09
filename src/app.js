@@ -27,11 +27,17 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    common.auth.authenticate(req.body.id_token)
+    auth.authenticateGoogleIdToken(req.body.id_token)
         .then(
             (data) => {
+                req.session.apiToken = common.auth.signAPIAccessToken({
+                    // TODO: Should fetch employee ID instead.
+                    email: data.email
+                });
+
+                // TODO: Supplying google id_token too for now, until all apps
+                // are changed over.
                 req.session.id_token = req.body.id_token;
-                req.session.google_data = data;
                 res.redirect(
                     auth.validRedirect(app, req.query.to) ? req.query.to : '/'
                 );
@@ -57,7 +63,9 @@ appRegs.forEach((appReg) => {
         res.render('app', {
             title: appReg.name,
             script: appReg.script,
+            // TODO: Remove google id_token once all apps are changed over.
             id_token: req.session.id_token,
+            apiToken: req.session.apiToken,
             config: JSON.stringify(appReg.config),
             apps: appRegs
         });

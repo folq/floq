@@ -9,5 +9,6 @@ block scripts
         until we get a better solution for auth.
     script(type='text/javascript').
         window.id_token = '#{id_token}';
+        window.apiToken = '#{apiToken}';
         window.config = !{config};
     script(src='#{script}')
