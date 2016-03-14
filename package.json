@@ -11,7 +11,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "body-parser": "^1.14.1",
-    "common": "git://github.com/joddski/node-common.git#a72b2fa",
+    "common": "joddski/node-common#master",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "jade": "^1.11.0",
