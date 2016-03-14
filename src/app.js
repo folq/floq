@@ -17,7 +17,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     secret: "TODO: DO THIS RIGHT"
-    // TODO: cookie: { secure: true }
+    // TODO: cookie: { secure: true }
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
