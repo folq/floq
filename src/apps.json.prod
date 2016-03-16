@@ -4,7 +4,7 @@
         "name": "Ansattliste",
         "script": "https://blank-employees.herokuapp.com/app.bundle.js",
         "config": {
-            "apiUri": "https://192.81.222.35"
+            "apiUri": "http://192.81.222.35"
         }
     },
 
