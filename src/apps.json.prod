@@ -24,5 +24,14 @@
         "config": {
             "diamondUri": "https://blank-logogen.herokuapp.com/diamant.svg"
         }
+    },
+
+    {
+        "short_name": "timestamp",
+        "name": "Timeføring",
+        "script": "https://blank-timestamp-test.herokuapp.com/app.bundle.js",
+        "config": {
+            "apiUrl": "https://blank-timestamp-api-test.herokuapp.com"
+        }
     }
 ]
