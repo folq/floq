@@ -29,9 +29,9 @@
     {
         "short_name": "timestamp",
         "name": "Timeføring",
-        "script": "https://blank-timestamp-test.herokuapp.com/app.bundle.js",
+        "script": "https://blank-timestamp.herokuapp.com/app.bundle.js",
         "config": {
-            "apiUrl": "https://blank-timestamp-api-test.herokuapp.com"
+            "apiUrl": "https://blank-timestamp-api.herokuapp.com"
         }
     }
 ]
