@@ -15,5 +15,14 @@
         "config": {
             "apiUri": "https://blank-calendar-test.herokuapp.com/api"
         }
+    },
+
+    {
+        "short_name": "timestamp",
+        "name": "Timeføring",
+        "script": "http://blank-timestamp-test.herokuapp.com/app.bundle.js",
+        "config": {
+            "apiUrl": "http://blank-timestamp-api-test.herokuapp.com"
+        }
     }
 ]

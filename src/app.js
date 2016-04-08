@@ -67,6 +67,7 @@ appRegs.forEach((appReg) => {
             // TODO: Remove google id_token once all apps are changed over.
             id_token: req.session.id_token,
             apiToken: req.session.apiToken,
+            mail: req.session.mail,
             config: JSON.stringify(appReg.config),
             apps: appRegs
         });
