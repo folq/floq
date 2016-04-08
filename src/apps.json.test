@@ -22,7 +22,7 @@
         "name": "Timeføring",
         "script": "https://blank-timestamp-test.herokuapp.com/app.bundle.js",
         "config": {
-            "apiUrl": "http://blank-timestamp-api-test.herokuapp.com"
+            "apiUrl": "https://blank-timestamp-api-test.herokuapp.com"
         }
     }
 ]
