@@ -11,7 +11,7 @@ app.set('views', 'src/views');
 app.set('view engine', 'jade');
 
 // Redirect all requests to https
-//app.use(common.herokuHttpsRedirect);
+app.use(common.herokuHttpsRedirect);
 app.use('/static', express.static('src/static'));
 app.use(session({
     resave: false,
