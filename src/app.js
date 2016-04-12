@@ -26,8 +26,8 @@ app.get('/login', (req, res) => {
     res.render('login', {to: req.query.to});
 });
 
-app.get('/.well-known/acme-challenge/dOV6cL0Z8Fa8NV5aELtlsJQsxvllE6RRQ9DRUSz_V28', (req, res) => {
-    res.send('dOV6cL0Z8Fa8NV5aELtlsJQsxvllE6RRQ9DRUSz_V28');
+app.get('/.well-known/acme-challenge/_LDZrzWyp7bh--qw07t2HjdYGPxy6OK9ngq6ZPDTaSU', (req, res) => {
+    res.send('_LDZrzWyp7bh--qw07t2HjdYGPxy6OK9ngq6ZPDTaSU.hTPHQKtWe1ObBxxLzHTEprkxaE_CflYxL_813-nC78I');
 });
 
 app.post('/login', (req, res) => {
