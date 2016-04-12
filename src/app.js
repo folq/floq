@@ -26,7 +26,7 @@ app.get('/login', (req, res) => {
     res.render('login', {to: req.query.to});
 });
 
-app.get('.well-known/acme-challenge/dOV6cL0Z8Fa8NV5aELtlsJQsxvllE6RRQ9DRUSz_V28', (req, res) => {
+app.get('/.well-known/acme-challenge/dOV6cL0Z8Fa8NV5aELtlsJQsxvllE6RRQ9DRUSz_V28', (req, res) => {
     res.send('dOV6cL0Z8Fa8NV5aELtlsJQsxvllE6RRQ9DRUSz_V28');
 });
 
