@@ -2,9 +2,9 @@
     {
         "short_name": "employees",
         "name": "Ansattliste",
-        "script": "https://blank-employees-test.herokuapp.com/dist/app.bundle.js",
+        "script": "https://blank-employees-test.herokuapp.com/app.bundle.js",
         "config": {
-            "apiUri": "https://blank-employees-test.herokuapp.com/api"
+            "apiUri": "https://blank-postgrest-test.herokuapp.com"
         }
     },
 
