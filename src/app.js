@@ -40,6 +40,8 @@ app.post('/login', (req, res) => {
                     email: data.email
                 });
 
+                req.session.email = data.email;
+
                 // TODO: Supplying google id_token too for now, until all apps
                 // are changed over.
                 req.session.id_token = req.body.id_token;
@@ -71,7 +73,7 @@ appRegs.forEach((appReg) => {
             // TODO: Remove google id_token once all apps are changed over.
             id_token: req.session.id_token,
             apiToken: req.session.apiToken,
-            mail: req.session.mail,
+            email: req.session.email,
             config: JSON.stringify(appReg.config),
             apps: appRegs
         });
