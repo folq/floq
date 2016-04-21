@@ -31,7 +31,7 @@
         "name": "Timeføring",
         "script": "https://blank-timestamp.herokuapp.com/app.bundle.js",
         "config": {
-            "apiUri": "https://blank-postgrest.herokuapp.com"
+            "apiUri": "http://blank-timestamp-api.herokuapp.com"
         }
     }
 ]
