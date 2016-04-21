@@ -22,7 +22,7 @@
         "name": "Timeføring",
         "script": "https://storage.googleapis.com/blank-intranet-test/timestamp/js/app.bundle.js",
         "config": {
-            "apiUri": "http://blank-timestamp-api-test.herokuapp.com"
+            "apiUri": "https://blank-timestamp-api-test.herokuapp.com"
         }
     }
 ]
