@@ -29,7 +29,7 @@
     {
         "short_name": "timestamp",
         "name": "Timeføring",
-        "script": "https://storage.googleapis.com/blank-intranet-test/timestamp/js/app.bundle.js",
+        "script": "https://storage.googleapis.com/blank-intranet/timestamp/js/app.bundle.js",
         "config": {
             "apiUri": "https://blank-timestamp-api.herokuapp.com"
         }
