@@ -2,7 +2,7 @@
     {
         "short_name": "employees",
         "name": "Ansattliste",
-        "script": "https://blank-employees.herokuapp.com/app.bundle.js",
+        "script": "https://storage.googleapis.com/blank-intranet-test/employees/js/app.bundle.js",
         "config": {
             "apiUri": "https://blank-postgrest.herokuapp.com"
         }
