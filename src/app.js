@@ -10,13 +10,12 @@ var helmet = require('helmet');
 // Get all registered apps.
 var appRegs = require('./apps.json');
 
-Array.prototype.unique = function() {
-    return this.filter((elem, pos) => this.indexOf(elem) == pos);
-}
+Array.prototype.unique = function() { return this.filter((elem, pos) => this.indexOf(elem) == pos); }
 
 var scriptHosts = appRegs
     .map(a => URL.parse(a.script))
-    .map(u => u.protocol + "//" + u.host);
+    .map(u => u.protocol + "//" + u.host)
+    .unique();
 
 var xhrHosts = appRegs
     .map(a => URL.parse(a.config.apiUri))
