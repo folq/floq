@@ -11,8 +11,7 @@ var helmet = require('helmet');
 var appRegs = require('./apps.json');
 
 Array.prototype.unique = function() {
-    var me = this;
-    return this.filter((elem, pos) => me.indexOf(elem) == pos);
+    return this.filter((elem, pos) => this.indexOf(elem) == pos);
 }
 
 var scriptHosts = appRegs
