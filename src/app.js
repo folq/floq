@@ -4,15 +4,56 @@ var bodyParser = require('body-parser');
 
 var auth = require('./auth.js');
 var common = require('common');
+var URL = require('url');
+var helmet = require('helmet');
+
+// Get all registered apps.
+var appRegs = require('./apps.json');
+
+Array.prototype.unique = function() {
+    var me = this;
+    return this.filter((elem, pos) => me.indexOf(elem) == pos);
+}
+
+var scriptHosts = appRegs
+    .map(a => URL.parse(a.script))
+    .map(u => u.protocol + "//" + u.host);
+
+var xhrHosts = appRegs
+    .map(a => URL.parse(a.config.apiUri))
+    .map(u => u.protocol + "//" + u.host)
+    .unique();
+
 
 /* SETUP */
 var app = express();
 app.set('views', 'src/views');
 app.set('view engine', 'jade');
 
+app.use(helmet());
+app.use(helmet.csp({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-eval'", 'https://apis.google.com:443', 'https://storage.googleapis.com:443'].concat(scriptHosts),
+    styleSrc: ["'unsafe-inline'", "'self'", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443'],
+    frameSrc: ['https://accounts.google.com:443'],
+    fontSrc: ['https://fonts.gstatic.com:443'],
+    connectSrc: ["'self'"].concat(xhrHosts),
+    imgSrc: ['https://apis.google.com:443', 'https://www.gravatar.com:443']
+  }
+}))
+
+
+
+
 // Redirect all requests to https
 app.use(common.herokuHttpsRedirect);
 app.use('/static', express.static('src/static'));
+
+
+app.use(helmet.noCache())
+
+
 app.use(session({
     resave: false,
     saveUninitialized: false,
@@ -57,8 +98,6 @@ app.post('/login', (req, res) => {
 /* PRIVATE PATHS */
 app.use(auth.requiresLogin);
 
-// Get all registered apps.
-var appRegs = require('./apps.json');
 
 app.get('/', (req, res) => {
     res.render('index', {title: 'Forside', apps: appRegs});
