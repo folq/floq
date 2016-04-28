@@ -74,7 +74,7 @@ app.post('/login', (req, res) => {
         .then(
             (data) => {
                 req.session.apiToken = common.auth.signAPIAccessToken({
-                    role: process.env.API_ROLE || 'qqpzgylo',
+                    role: process.env.API_ROLE || 'root',
                     // TODO: Should fetch employee ID instead.
                     email: data.email
                 });
