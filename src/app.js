@@ -37,7 +37,7 @@ app.use(helmet.csp({
     frameSrc: ['https://accounts.google.com:443'],
     fontSrc: ['https://fonts.gstatic.com:443'],
     connectSrc: ["'self'"].concat(xhrHosts),
-    imgSrc: ['https://apis.google.com:443', 'https://www.gravatar.com:443']
+    imgSrc: ['https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443']
   }
 }))
 
