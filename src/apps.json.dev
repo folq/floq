@@ -2,9 +2,9 @@
     {
         "short_name": "employees",
         "name": "Ansattliste",
-        "script": "http://localhost:8081/dist/app.bundle.js",
+        "script": "http://localhost:8080/app.bundle.js",
         "config": {
-            "apiUri": "http://localhost:8081/api"
+            "apiUri": "https://api-dev.floq.no"
         }
     },
 
@@ -22,7 +22,7 @@
         "name": "Timeføring",
         "script": "http://localhost:8080/app.bundle.js",
         "config": {
-            "apiUri": "http://localhost:3001"
+            "apiUri": "https://api-dev.floq.no"
         }
     }
 ]
