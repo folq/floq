@@ -4,7 +4,7 @@
         "name": "Ansattliste",
         "script": "https://storage.googleapis.com/blank-intranet-test/employees/js/app.bundle.js",
         "config": {
-            "apiUri": "https://blank-postgrest.herokuapp.com"
+            "apiUri": "https://api.floq.no"
         }
     },
 
@@ -31,7 +31,7 @@
         "name": "Timeføring",
         "script": "https://storage.googleapis.com/blank-intranet/timestamp/js/app.bundle.js",
         "config": {
-            "apiUri": "https://blank-timestamp-api.herokuapp.com"
+            "apiUri": "https://api.floq.no"
         }
     }
 ]
