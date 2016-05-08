@@ -36,7 +36,12 @@ app.use(helmet.csp({
     styleSrc: ["'unsafe-inline'", "'self'", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443'],
     frameSrc: ['https://accounts.google.com:443'],
     fontSrc: ['https://fonts.gstatic.com:443'],
-    connectSrc: ["'self'"].concat(xhrHosts),
+      connectSrc: ["'self'"].concat(xhrHosts).concat(
+          // allow localhost:8080 when in dev mode
+          process.env.NODE_ENV === 'production'
+          ? []
+          : ['http://localhost:8080','ws://localhost:8080']
+      ),
     imgSrc: ['https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443']
   }
 }))
