@@ -17,7 +17,9 @@ var scriptHosts = appRegs
     .map(u => u.protocol + "//" + u.host)
     .unique();
 
+// Collect all API URLs as XHR hosts (for CSP)
 var xhrHosts = appRegs
+    .filter(a => a.config.apiUri !== undefined)
     .map(a => URL.parse(a.config.apiUri))
     .map(u => u.protocol + "//" + u.host)
     .unique();
