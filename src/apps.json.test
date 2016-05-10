@@ -33,5 +33,5 @@
         "config": {
             "apiUri": "https://api-test.floq.no"
         }
-    },
+    }
 ]
