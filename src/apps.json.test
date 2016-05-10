@@ -24,5 +24,14 @@
         "config": {
             "apiUri": "https://api-test.floq.no"
         }
-    }
+    },
+
+    {
+        "short_name": "projects",
+        "name": "Prosjekter",
+        "script": "https://storage.googleapis.com/blank-intranet-test/projects/js/app.bundle.js",
+        "config": {
+            "apiUri": "https://api-test.floq.no"
+        }
+    },
 ]
