@@ -16,18 +16,23 @@ function onSuccess(googleUser) {
 }
 
 function onFailure(error) {
-    // TODO: Show error to user.
-    console.log(error);
+    // FIXME
+    alert(error.reason);
 }
 
 function renderButton() {
-    gapi.signin2.render('goog-signin-button', {
-        'scope': 'profile',
-        'width': 250,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'light',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
+    gapi.load('auth2', function() {
+        gapi.auth2.init({
+            client_id: '1085640931155-0f6l02jv973og8mi4nb124k6qlrh470p.apps.googleusercontent.com',
+            hosted_domain: 'blankoslo.no'
+        }).then(function() {
+            gapi.signin2.render('goog-signin-button', {
+                'width': 250,
+                'height': 50,
+                'longtitle': true,
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+            });
+        });
     });
 }
