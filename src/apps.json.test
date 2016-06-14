@@ -29,7 +29,7 @@
     {
         "short_name": "projects",
         "name": "Prosjekter",
-        "script": "https://storage.googleapis.com/projects-test/projects/js/app.bundle.js",
+        "script": "https://storage.googleapis.com/floq-test/projects/js/app.bundle.js",
         "config": {
             "apiUri": "https://api-test.floq.no"
         }
