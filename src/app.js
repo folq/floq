@@ -34,7 +34,6 @@ var iframeHosts = appRegs
     .map(u => u.protocol + "//" + u.host)
     .unique();
 
-console.log(iframeHosts);
 /* SETUP */
 var app = express();
 app.set('views', 'src/views');
