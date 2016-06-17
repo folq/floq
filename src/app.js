@@ -142,7 +142,7 @@ appRegs.forEach((appReg) => {
             break;
         case 'external':
             app.get('/' + appReg.short_name + '*', (req, res) => {
-                res.redirect(appReg.link);
+                res.redirect(appReg.url);
             });
             break;
         case 'iframe':

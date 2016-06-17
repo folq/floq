@@ -35,15 +35,21 @@
         }
     },
     {
+        "short_name": "prat",
+        "name": "Prat",
+        "type": "iframe",
+        "url": "https://prat.blankoslo.no"
+    },
+    {
+        "short_name": "slack",
+        "name": "Slack",
+        "type": "external",
+        "url": "https://heltblank.slack.com"
+    },
+    {
         "short_name": "utstyrsliste",
         "name": "Utstyrsliste",
         "type": "iframe",
         "url": "https://docs.google.com/spreadsheets/d/1K-okaHKiYPvpR9Bf_p4dm63qcQ_Xl5qT58ZjIAmt3RY"
     },
-    {
-        "short_name": "slackernews",
-        "name": "Slackernews",
-        "type": "iframe",
-        "url": "https://prat.blankoslo.no"
-    }
 ]

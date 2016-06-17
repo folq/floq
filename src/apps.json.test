@@ -33,5 +33,17 @@
         "config": {
             "apiUri": "https://api-test.floq.no"
         }
+    },
+    {
+        "short_name": "prat",
+        "name": "Prat",
+        "type": "iframe",
+        "url": "https://prat.blankoslo.no"
+    },
+    {
+        "short_name": "slack",
+        "name": "Slack",
+        "type": "external",
+        "url": "https://heltblank.slack.com"
     }
 ]
