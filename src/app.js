@@ -10,21 +10,31 @@ var helmet = require('helmet');
 // Get all registered apps.
 var appRegs = require('./apps.json');
 
-Array.prototype.unique = function() { return this.filter((elem, pos) => this.indexOf(elem) == pos); }
+Array.prototype.unique = function () {
+    return this.filter((elem, pos) => this.indexOf(elem) == pos);
+}
 
 var scriptHosts = appRegs
+    .filter(a => a.script !== undefined)
     .map(a => URL.parse(a.script))
     .map(u => u.protocol + "//" + u.host)
     .unique();
 
 // Collect all API URLs as XHR hosts (for CSP)
 var xhrHosts = appRegs
+    .filter(a => a.config !== undefined)
     .filter(a => a.config.apiUri !== undefined)
     .map(a => URL.parse(a.config.apiUri))
     .map(u => u.protocol + "//" + u.host)
     .unique();
 
+var iframeHosts = appRegs
+    .filter(a => a.type == 'iframe')
+    .map(a => URL.parse(a.url))
+    .map(u => u.protocol + "//" + u.host)
+    .unique();
 
+console.log(iframeHosts);
 /* SETUP */
 var app = express();
 app.set('views', 'src/views');
@@ -32,20 +42,19 @@ app.set('view engine', 'jade');
 
 app.use(helmet());
 app.use(helmet.csp({
-  directives: {
-    defaultSrc: ["'self'"],
-    scriptSrc: ["'self'", "'unsafe-eval'", 'https://apis.google.com:443', 'https://storage.googleapis.com:443'].concat(scriptHosts),
-    styleSrc: ["'unsafe-inline'", "'self'", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443'],
-    frameSrc: ['https://accounts.google.com:443'],
-    fontSrc: ['https://fonts.gstatic.com:443'],
-    connectSrc: ["'self'"].concat(xhrHosts).concat(
-        // allow localhost:8080 when in dev mode
-        process.env.NODE_ENV === 'production'
-        ? []
-        : ['http://localhost:8080','ws://localhost:8080']
-    ),
-    imgSrc: ["'self'", 'https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443']
-  }
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-eval'", 'https://apis.google.com:443', 'https://storage.googleapis.com:443'].concat(scriptHosts),
+        styleSrc: ["'unsafe-inline'", "'self'", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443'],
+        frameSrc: ['https://accounts.google.com:443'],
+        fontSrc: ['https://fonts.gstatic.com:443'],
+        connectSrc: ["'self'"].concat(xhrHosts).concat(
+            // allow localhost:8080 when in dev mode
+            process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080']
+        ),
+        imgSrc: ["'self'", 'https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443'],
+        frameSrc: ["'self'", 'https://accounts.google.com/'].concat(iframeHosts)
+    }
 }))
 
 
@@ -63,13 +72,17 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     secret: "TODO: DO THIS RIGHT"
-    // TODO: cookie: { secure: true }
+        // TODO: cookie: { secure: true }
 }));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 /* PUBLIC PATHS */
 app.get('/login', (req, res) => {
-    res.render('login', {to: req.query.to});
+    res.render('login', {
+        to: req.query.to
+    });
 });
 
 app.get('/.well-known/acme-challenge/_LDZrzWyp7bh--qw07t2HjdYGPxy6OK9ngq6ZPDTaSU', (req, res) => {
@@ -105,23 +118,46 @@ app.use(auth.requiresLogin);
 
 
 app.get('/', (req, res) => {
-    res.render('index', {title: 'Forside', apps: appRegs});
+    res.render('index', {
+        title: 'Forside',
+        apps: appRegs
+    });
 });
 
 // Set up paths for each registered app.
 appRegs.forEach((appReg) => {
-    app.get('/'+appReg.short_name+'*', (req, res) => {
-        res.render('app', {
-            title: appReg.name,
-            script: appReg.script,
-            // TODO: Remove google id_token once all apps are changed over.
-            id_token: req.session.id_token,
-            apiToken: req.session.apiToken,
-            email: req.session.email,
-            config: JSON.stringify(appReg.config),
-            apps: appRegs
-        });
-    });
+    switch (appReg.type) {
+        case 'app':
+            app.get('/' + appReg.short_name + '*', (req, res) => {
+                res.render('app', {
+                    title: appReg.name,
+                    script: appReg.script,
+                    // TODO: Remove google id_token once all apps are changed over.
+                    id_token: req.session.id_token,
+                    apiToken: req.session.apiToken,
+                    email: req.session.email,
+                    config: JSON.stringify(appReg.config),
+                    apps: appRegs
+                });
+            });
+            break;
+        case 'external':
+            app.get('/' + appReg.short_name + '*', (req, res) => {
+                res.redirect(appReg.link);
+            });
+            break;
+        case 'iframe':
+            app.get('/' + appReg.short_name + '*', (req, res) => {
+                res.render('iframe', {
+                    url: appReg.url,
+                    apps: appRegs
+                })
+            });
+            break;
+        default:
+
+    }
+
 });
 
 /* START SERVER */
