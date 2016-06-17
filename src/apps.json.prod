@@ -59,7 +59,7 @@
     {
         "short_name": "em2016",
         "name": "EM 2016",
-        "type": "iframe",
+        "type": "external",
         "url": "https://em2016.blankoslo.no"
     }
 ]
