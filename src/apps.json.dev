@@ -3,6 +3,7 @@
         "short_name": "employees",
         "name": "Ansattliste",
         "script": "http://localhost:8080/app.bundle.js",
+        "type": "app",
         "config": {
             "apiUri": "https://api-dev.floq.no"
         }
@@ -11,6 +12,7 @@
     {
         "short_name": "calendar",
         "name": "Fraværskalender",
+        "type": "app",
         "script": "http://localhost:3001/static/js/app.bundle.js",
         "config": {
             "apiUri": "http://localhost:3001/api"
@@ -20,6 +22,7 @@
     {
         "short_name": "timestamp",
         "name": "Timeføring",
+        "type": "app",
         "script": "http://localhost:8080/app.bundle.js",
         "config": {
             "apiUri": "https://api-dev.floq.no"
@@ -29,6 +32,7 @@
     {
         "short_name": "projects",
         "name": "Prosjekter",
+        "type": "app",
         "script": "http://localhost:8080/app.bundle.js",
         "config": {
             "apiUri": "https://api-dev.floq.no"

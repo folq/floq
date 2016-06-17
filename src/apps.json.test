@@ -3,6 +3,7 @@
         "short_name": "employees",
         "name": "Ansattliste",
         "script": "https://storage.googleapis.com/floq-test/employees/js/app.bundle.js",
+        "type": "app",
         "config": {
             "apiUri": "https://api-test.floq.no"
         }
@@ -11,6 +12,7 @@
     {
         "short_name": "calendar",
         "name": "Fraværskalender",
+        "type": "app",
         "script": "https://blank-calendar-test.herokuapp.com/static/js/app.bundle.js",
         "config": {
             "apiUri": "https://blank-calendar-test.herokuapp.com/api"
@@ -20,6 +22,7 @@
     {
         "short_name": "timestamp",
         "name": "Timeføring",
+        "type": "app",
         "script": "https://storage.googleapis.com/floq-test/timetracker/js/app.bundle.js",
         "config": {
             "apiUri": "https://api-test.floq.no"
@@ -29,6 +32,7 @@
     {
         "short_name": "projects",
         "name": "Prosjekter",
+        "type": "app",
         "script": "https://storage.googleapis.com/floq-test/projects/js/app.bundle.js",
         "config": {
             "apiUri": "https://api-test.floq.no"
