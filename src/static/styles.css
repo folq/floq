@@ -1,125 +1,112 @@
 td.icon-cell {
-    padding-top: 6px;
+  padding-top: 6px;
 }
-
 .full-width {
-    width: 100%;
+  width: 100%;
 }
-
 .content-box {
-    padding: 0 24px 24px;
+  padding: 0 24px 24px;
 }
-
 .form-element {
-    margin-right: 10px;
+  margin-right: 10px;
 }
-
 .main-content {
-    max-width: 1024px;
-    margin: 0 auto;
+  max-width: 1024px;
+  margin: 0 auto;
 }
-
 .data-group {
-    min-width: 180px;
+  min-width: 180px;
 }
-
 .data-label {
-    font-weight: bold;
+  font-weight: bold;
 }
-
 .top-fixed-menu {
-    position: fixed;
-    top: 64px;
+  position: fixed;
+  top: 64px;
 }
-
 .month-cal-table {
-    text-align: center;
-    table-layout: fixed;
-    font-size: 13px;
-    border-collapse: collapse;
-    white-space: nowrap;
+  text-align: center;
+  table-layout: fixed;
+  font-size: 13px;
+  border-collapse: collapse;
+  white-space: nowrap;
 }
-
 .day-col {
-    width: 48px;
+  width: 48px;
 }
-
 .month-cal-table th {
-    vertical-align: bottom;
-    font-weight: 700;
-    color: rgba(0, 0, 0, .54);
-    font-size: 12px;
-    padding-bottom: 8px;
+  vertical-align: bottom;
+  font-weight: 700;
+  color: rgba(0, 0, 0, .54);
+  font-size: 12px;
+  padding-bottom: 8px;
 }
-
 .month-cal-table tr {
-    height: 48px;
-    border: 1px solid rgba(0, 0, 0, .12);
+  height: 48px;
+  border: 1px solid rgba(0, 0, 0, .12);
 }
-
 .month-cal-table td {
-    border: 1px solid rgba(0, 0, 0, .12);
-    cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, .12);
+  cursor: pointer;
 }
-
 .side-scroll-table-outer {
-    position: relative;
+  position: relative;
 }
-
 .side-scroll-table-inner {
-    overflow-x: scroll;
-    overflow-y: visible;
-    margin-left: 10em;
-    font-size: 13px;
+  overflow-x: scroll;
+  overflow-y: visible;
+  margin-left: 10em;
+  font-size: 13px;
 }
-
 .side-scroll-table-inner table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
 }
-
 .side-scroll-table-inner tr {
-    height: 24px;
+  height: 24px;
 }
-
 .side-scroll-table-inner thead {
-    vertical-align: bottom;
-    font-weight: 700;
-    color: rgba(0, 0, 0, .54);
-    font-size: 12px;
-    padding-bottom: 8px;
+  vertical-align: bottom;
+  font-weight: 700;
+  color: rgba(0, 0, 0, .54);
+  font-size: 12px;
+  padding-bottom: 8px;
 }
-
 .side-scroll-table-inner td {
-    border: 1px solid rgba(0, 0, 0, .12);
+  border: 1px solid rgba(0, 0, 0, .12);
 }
-
 .side-scroll-table-inner th {
-    border: 1px solid rgba(0, 0, 0, .12);
+  border: 1px solid rgba(0, 0, 0, .12);
 }
-
 .side-scroll-table-cell {
-    width: 21px;
+  width: 21px;
 }
-
 .side-scroll-table-left-header {
-    position: absolute;
-    left: 0;
-    width: 10em;
-    text-align: left;
-    padding: 5px;
-    border: none !important;
-    vertical-align: center;
+  position: absolute;
+  left: 0;
+  width: 10em;
+  text-align: left;
+  padding: 5px;
+  border: none !important;
+  vertical-align: center;
 }
-
 .side-scroll-table-top-header-row {
-    height: 45px !important;
-    vertical-align: bottom;
-    text-align: left;
+  height: 45px !important;
+  vertical-align: bottom;
+  text-align: left;
 }
-
 .side-scroll-table-top-header-row th {
-    padding-left: 10px;
-    padding-bottom: 8px;
+  padding-left: 10px;
+  padding-bottom: 8px;
+}
+.external:after {
+  font-family: 'Material Icons';
+  content: 'launch';
+  padding-left: 10px;
+}
+.iframe:after {
+  font-family: 'Material Icons';
+  content: 'airplay';
+  padding-left: 10px;
 }
