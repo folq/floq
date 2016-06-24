@@ -48,6 +48,17 @@
             "apiUri": "https://api.floq.no"
         }
     },
+
+    {
+        "short_name": "reports",
+        "name": "Rapporter",
+        "type": "app",
+        "script": "https://storage.googleapis.com/floq/reports/js/app.bundle.js",
+        "config": {
+            "apiUri": "https://api.floq.no"
+        }
+    },
+
     {
         "short_name": "prat",
         "name": "Prat",
