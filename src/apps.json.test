@@ -30,20 +30,20 @@
     },
 
     {
-        "short_name": "reports",
-        "name": "Rapporter",
+        "short_name": "projects",
+        "name": "Prosjekter",
         "type": "app",
-        "script": "https://storage.googleapis.com/floq-test/reports/js/app.bundle.js",
+        "script": "https://storage.googleapis.com/floq-test/projects/js/app.bundle.js",
         "config": {
             "apiUri": "https://api-test.floq.no"
         }
     },
 
     {
-        "short_name": "projects",
-        "name": "Prosjekter",
+        "short_name": "reports",
+        "name": "Rapporter",
         "type": "app",
-        "script": "https://storage.googleapis.com/floq-test/projects/js/app.bundle.js",
+        "script": "https://storage.googleapis.com/floq-test/reports/js/app.bundle.js",
         "config": {
             "apiUri": "https://api-test.floq.no"
         }
