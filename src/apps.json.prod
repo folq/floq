@@ -13,9 +13,9 @@
         "short_name": "calendar",
         "name": "Fraværskalender",
         "type": "app",
-        "script": "https://blank-calendar.herokuapp.com/static/js/app.bundle.js",
+        "script": "https://storage.googleapis.com/floq/calendar/js/app.bundle.js",
         "config": {
-            "apiUri": "https://blank-calendar.herokuapp.com/api"
+            "apiUri": "https://api.floq.no"
         }
     },
 

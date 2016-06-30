@@ -15,7 +15,7 @@
         "type": "app",
         "script": "http://localhost:3001/static/js/app.bundle.js",
         "config": {
-            "apiUri": "http://localhost:3001/api"
+            "apiUri": "https://api-dev.floq.no"
         }
     },
 
