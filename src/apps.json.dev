@@ -52,15 +52,17 @@
     {
         "short_name": "prat",
         "name": "Prat",
-        "type": "iframe",
+        "type": "external",
         "url": "https://prat.blankoslo.no"
     },
+
     {
         "short_name": "slack",
         "name": "Slack",
         "type": "external",
         "url": "https://heltblank.slack.com"
     },
+
     {
         "short_name": "em2016",
         "name": "EM 2016",

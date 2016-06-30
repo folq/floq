@@ -62,7 +62,7 @@
     {
         "short_name": "prat",
         "name": "Prat",
-        "type": "iframe",
+        "type": "external",
         "url": "https://prat.blankoslo.no"
     },
 

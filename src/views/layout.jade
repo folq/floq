@@ -37,7 +37,10 @@ html(lang='en')
                 .mdl-layout-title Meny
                 nav.mdl-navigation
                     each app in apps
-                        a.mdl-navigation__link(href='/#{app.short_name}', class='#{app.type}')=app.name
+                        if app.type == 'external'
+                            a.mdl-navigation__link(href='#{app.url}', class='#{app.type}', target='_blank', rel='noopener noreferrer')=app.name
+                        else
+                            a.mdl-navigation__link(href='/#{app.short_name}', class='#{app.type}')=app.name
 
             main.mdl-layout__content
                 block content

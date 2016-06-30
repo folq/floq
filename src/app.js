@@ -140,11 +140,6 @@ appRegs.forEach((appReg) => {
                 });
             });
             break;
-        case 'external':
-            app.get('/' + appReg.short_name + '*', (req, res) => {
-                res.redirect(appReg.url);
-            });
-            break;
         case 'iframe':
             app.get('/' + appReg.short_name + '*', (req, res) => {
                 res.render('iframe', {
