@@ -55,7 +55,7 @@ td.icon-cell {
 .side-scroll-table-inner {
   overflow-x: scroll;
   overflow-y: visible;
-  margin-left: 10em;
+  margin-left: 15em;
   font-size: 13px;
 }
 .side-scroll-table-inner table {
@@ -85,7 +85,7 @@ td.icon-cell {
 .side-scroll-table-left-header {
   position: absolute;
   left: 0;
-  width: 10em;
+  width: 15em;
   text-align: left;
   padding: 5px;
   border: none !important;
