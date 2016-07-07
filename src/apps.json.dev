@@ -40,6 +40,16 @@
     },
 
     {
+        "short_name": "staffing",
+        "name": "Bemanning",
+        "type": "app",
+        "script": "http://localhost:8080/app.bundle.js",
+        "config": {
+            "apiUri": "https://api-dev.floq.no"
+        }
+    },
+
+    {
         "short_name": "reports",
         "name": "Rapporter",
         "type": "app",
