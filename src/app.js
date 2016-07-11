@@ -60,7 +60,7 @@ app.use(helmet.csp({
 
 
 // Redirect all requests to https
-//app.use(common.herokuHttpsRedirect);
+app.use(common.herokuHttpsRedirect);
 app.use('/static', express.static('src/static'));
 app.use('/favicon.ico', express.static('src/static/favicon.ico'));
 
