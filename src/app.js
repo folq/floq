@@ -60,7 +60,7 @@ app.use(helmet.csp({
 
 
 // Redirect all requests to https
-app.use(common.herokuHttpsRedirect);
+//app.use(common.herokuHttpsRedirect);
 app.use('/static', express.static('src/static'));
 app.use('/favicon.ico', express.static('src/static/favicon.ico'));
 
@@ -84,8 +84,8 @@ app.get('/login', (req, res) => {
     });
 });
 
-app.get('/.well-known/acme-challenge/_LDZrzWyp7bh--qw07t2HjdYGPxy6OK9ngq6ZPDTaSU', (req, res) => {
-    res.send('_LDZrzWyp7bh--qw07t2HjdYGPxy6OK9ngq6ZPDTaSU.hTPHQKtWe1ObBxxLzHTEprkxaE_CflYxL_813-nC78I');
+app.get('/.well-known/acme-challenge/JDVxuhsuDleA8IQxF_lJvlqqzP7dlRMdCUSgOowh1es', (req, res) => {
+    res.send('JDVxuhsuDleA8IQxF_lJvlqqzP7dlRMdCUSgOowh1es.hTPHQKtWe1ObBxxLzHTEprkxaE_CflYxL_813-nC78I');
 });
 
 app.post('/login', (req, res) => {
