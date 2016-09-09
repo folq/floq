@@ -60,6 +60,16 @@
     },
 
     {
+        "short_name": "balance",
+        "name": "Avstemming",
+        "type": "app",
+        "script": "http://localhost:8080/app.bundle.js",
+        "config": {
+            "apiUri": "https://api-dev.floq.no"
+        }
+    },
+
+    {
         "short_name": "prat",
         "name": "Prat",
         "type": "external",
