@@ -1,9 +1,9 @@
 [
     {
-        "short_name": "employees",
-        "name": "Ansattliste",
-        "script": "http://localhost:8080/app.bundle.js",
+        "short_name": "timestamp",
+        "name": "Timeføring",
         "type": "app",
+        "script": "http://localhost:8080/app.bundle.js",
         "config": {
             "apiUri": "https://api-dev.floq.no"
         }
@@ -20,10 +20,10 @@
     },
 
     {
-        "short_name": "timestamp",
-        "name": "Timeføring",
-        "type": "app",
+        "short_name": "employees",
+        "name": "Ansattliste",
         "script": "http://localhost:8080/app.bundle.js",
+        "type": "app",
         "config": {
             "apiUri": "https://api-dev.floq.no"
         }
@@ -70,6 +70,16 @@
     },
 
     {
+        "short_name": "logo",
+        "name": "Logogenerator",
+        "type": "app",
+        "script": "https://blank-logogen.herokuapp.com/static/app.js",
+        "config": {
+            "diamondUri": "https://blank-logogen.herokuapp.com/diamant.svg"
+        }
+    },
+
+    {
         "short_name": "prat",
         "name": "Prat",
         "type": "external",
@@ -84,9 +94,9 @@
     },
 
     {
-        "short_name": "em2016",
-        "name": "EM 2016",
+        "short_name": "utstyrsliste",
+        "name": "Utstyrsliste",
         "type": "iframe",
-        "url": "https://em2016.blankoslo.no"
+        "url": "https://docs.google.com/spreadsheets/d/1K-okaHKiYPvpR9Bf_p4dm63qcQ_Xl5qT58ZjIAmt3RY"
     }
 ]

@@ -1,9 +1,9 @@
 [
     {
-        "short_name": "employees",
-        "name": "Ansattliste",
-        "script": "https://storage.googleapis.com/floq-test/employees/js/app.bundle.js",
+        "short_name": "timestamp",
+        "name": "Timeføring",
         "type": "app",
+        "script": "https://storage.googleapis.com/floq-test/timetracker/js/app.bundle.js",
         "config": {
             "apiUri": "https://api-test.floq.no"
         }
@@ -20,10 +20,10 @@
     },
 
     {
-        "short_name": "timestamp",
-        "name": "Timeføring",
+        "short_name": "employees",
+        "name": "Ansattliste",
+        "script": "https://storage.googleapis.com/floq-test/employees/js/app.bundle.js",
         "type": "app",
-        "script": "https://storage.googleapis.com/floq-test/timetracker/js/app.bundle.js",
         "config": {
             "apiUri": "https://api-test.floq.no"
         }
@@ -70,6 +70,16 @@
     },
 
     {
+        "short_name": "logo",
+        "name": "Logogenerator",
+        "type": "app",
+        "script": "https://blank-logogen.herokuapp.com/static/app.js",
+        "config": {
+            "diamondUri": "https://blank-logogen.herokuapp.com/diamant.svg"
+        }
+    },
+
+    {
         "short_name": "prat",
         "name": "Prat",
         "type": "external",
@@ -81,5 +91,12 @@
         "name": "Slack",
         "type": "external",
         "url": "https://heltblank.slack.com"
+    },
+
+    {
+        "short_name": "utstyrsliste",
+        "name": "Utstyrsliste",
+        "type": "iframe",
+        "url": "https://docs.google.com/spreadsheets/d/1K-okaHKiYPvpR9Bf_p4dm63qcQ_Xl5qT58ZjIAmt3RY"
     }
 ]
