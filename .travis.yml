@@ -2,25 +2,25 @@ language: node_js
 cache:
   directories: node_modules
 node_js:
-  - '6'
-
+- '6'
 notifications:
   slack:
     secure: m87VvXVB4ziRfYeeWmlja1eIAY8Ex3kYv27ktsbZYqX+ymIHPJN/eMazx0SL/aETCaRycPG1E7pP7CCIl93RpATMKVu5CF5L4fcMxlnBImBXMmY1PM0rMHlXSZVhjFLdRlECFO3McZB9wiRskPBsPjMtGGG6ucG2vbqoXlWJ6kzBk2zwRuwDJDrYPKEmML+L1FBOVV3/JTB67cNBz/RHjfOpTM++Oala8MIv6d5+wI7La3bcNKl5fAAmnfcg5O2NDNWg8fk+0lov56UAkWHmMMzxHnYB2RHmS9XD+VX7hBbjeQ4czKghdz+lsj3JjanTYCi2IzSJwevRnnpFXlqAi4DKitHWojA3y0w3nPbq72NGPVQG9hAFu+bOHODfzJBDAQBULZtqx1jawuQmFyiAGR+A8jYAMEbx0PgY3WAqZznL87Cdy/QMYHkn2/7zImx6fwm580jaZJJPh+R5IZEffnSGQr+mTIoDN4dfid4fBwFENoTfUyPeOp3VutvV14VSm67GjFh8lPVZWZMUk9JiS8cT/Ga013lNITQCJGblqQK3xrTcdUfy9zMB4aGhAwskdszQwRXEi/7vfrkUvd6Tu0NgBct8w/rS5TGXrdZqnT4Z9VS3qTOetbQe13LH26LONQb2PfgrlMp5zLqPrAl79fWRxHY3gsYne9I+hAHY9AA=
-
 sudo: required
-
 services:
-  - docker
-
+- docker
 install:
-  - docker build -t floq .
-  - docker run -d -p 127.0.0.1:80:80 floq 
-  - docker ps -a
-  
+- docker build -t floq .
+- docker run -d -p 127.0.0.1:80:80 floq
+- docker ps -a
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "feature/travis-support" ]; then
+- if [ $TRAVIS_BRANCH == 'develop' ]; then
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag floq floq:latest blankoslo/floq:latest
-    docker push blankoslo/floq:latest
-    fi
+    docker tag floq floq:test blankoslo/floq:latest
+    docker push blankoslo/floq:test
+  fi
+env:
+  global:
+  - secure: ycsFhUHYS68Tl5N2EqYE2iN0HcVCHW+0zAcLqW1/Fi2YwxrVEz6OuqLmDt03iAvn3EMpZli3YZTN0a4bfpuCTHmLaQN0aJVENXiqnVHgOPfMMRrUCi4DxSd0OofR5qBWT1FwjIW70yXXqOOBL5J35Izh231DNHLGssteBgWDg7ETYvHr/bcFrV6qC+wg2lXFCp7A6EVhVUNHalBwGGkV958CDf4llaViyWE3I3tF2RCVrI8LZ5r6vCOEEgIcUYqb9z4i2xFZfURFrX0wMWcZ7rAu96LFCwdQcTtZBOdmGRm96Du+NQ1SYcB97RzSVnEaShG9wYV/979pb0zIXFBVJqBgA1r0NEk6spmIDUsk69NGloOU45eiVgVgUHdHhH+3wfkouVJukiIvE6ZTHVLR+B283fABedokbGdlcq90HDQBjg95B8WLtNwcFInfnOQjNOuCuB4Lcd+kXq8fpy/MqFQ6SQPt+fX3Bh7furJb+iVfxh9jyLYB1NLl2g6ZjD+jiMobscGGn9aUaYo/0cYBmayuxqIMpChSItsQfscHH5i6wlmTJwpK5rrNbBbE0G6b+peXx7kNP/XWEiCt+WCZF63+p9OnS9jv/UK5pwkC0MPmhKSCurhi3qLCEyU/tuNeRwMMWwEHIDgkvkaFZ6lOF2nT4z67GairkItGQrHiK/8=
+  - secure: LKJKUK8XXX0pcSOojoa4BgUML6MF2lZY2wgUSFQe6csSQZReiwCGaFIDWN+SneGF9pGJVJRKzjfKxj7s9gfhtT+8rx1DGsJATW1YRRkJC9ETbwA/6m17Y0Jmclav/J1EFn27bxuq/E6pGm8CvLet/jrOJr1V7Ble6LnpcRhOhbfkrKzr0IzoL+PH3obPINgh3tIBEUf300nzbe5J9/dpclINDgWr4UjHWkHap8j87wn9Vb2HgXpUjepnGfdsSrjOsv76yxF5oPzvx1bmKaelclXE8Cvnp99Fyf3VDi4chlUK/flZ9AmiobBVbDBIZwKbshsWn5KsEKCu4CmwapB/BFtCA3ncs5WjDXpliqSA2Ex8EKi3wv1fkuSkY8aunxAoc7ZI+45hww7H0wHr1YIMetp7hRF00DZZUOWLmZMBTXGfuILl3Dwx+7CZC1Ej8GOHwVIvNLFL22sV0CZYz+UsHLntSgUbMYd8/7isWJEFA7uT1LKQMUoVbzKDossveck3PS77RrJdaXKyemdzo3IEs4lGbdhHb/LMNH8kesIgvAAfMHkGUtoZHootS3YSA8PsTbE7Qf3XPqthvlC9qhMmyBDXBU/EzeGXumZ9cHozuDE5uLuBwtyiHbTlKSBBScvH1abbO39y12mXo5Bd5s6yTfYlbomYMz0fiZTJaFCnlnk=
+  - secure: V0M18PWabvW+H0dO8lze+0Rp9yuWvZ7kYhE06/U/O4QliXhFzNS68lurgHJXp4MaJ2tVZFdO6XYRszHiE6e5gogMtarelf7Yljkh39p80bSiAO1ykpwcga2iJoxofkW8YNwKnjs2nEe8b5p1nLqjG57pG+jIJZMbFfZwh/KtNnw1U/fxDs36knskg0OIBhK4GuZuiYLAcUEXpsEA0Cpe5R35+v2IaMBa92IXUtgHfv53zMIV6zIM0xtRdWrKyDfqERCH26svkXgJb5H1851jfRLP0w0sM4Ou9GvP07Br6Zoz/n3N9UrgHqvqn59u0BDn1MlRyHYFqF7mIGj8YT9uxKJR2pckrorU6bIpXto3W7LVfb6pJfq6b4fPppoiizbKVPrTgbl7jxWbePhvoa57KPuq1Biudh4+s+HahV7dKBkPCz2giLrN2Ibv0xSDpeAIrs1DQ64Dz1WeX98GQ+qMg42fiH94+26A+CUE/AxUUwBRsVkaav+h1P3Py97KiYg3VWHKMmTXzzJFnIK2w7VCa1q/uZlMY+97Ye0K3ny5MmsODcsziBkrnpnJ7OPecvXWmJpEBiQdtdXRlaP18dlk2+qjIhE8hMlCEs0D2qDjpv02m9/AAs3v3G51QLUPEmJmamE2w1LEX0qTgC1Qtxtx17AKDzBUftvWNYdmiaOo+bk=
