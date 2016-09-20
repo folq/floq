@@ -10,14 +10,15 @@ sudo: required
 services:
 - docker
 install:
-- docker build --build-arg env='test' -t floq . # TODO: change based on branch?
-- docker run -d -p 127.0.0.1:80:80 floq
+- export ENV="test" # TODO: change based on branch?
+- docker build --build-arg env=$ENV -t floq .
+- docker run -d -p 127.0.0.1:3000:3000 floq
 - docker ps -a
 after_success:
 - if [ $TRAVIS_BRANCH == 'develop' ]; then
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag floq floq:test blankoslo/floq:test;
-    docker push blankoslo/floq:test
+    docker tag floq floq:test blankoslo/floq:$ENV;
+    docker push blankoslo/floqblank:$ENV;
   fi
 env:
   global:

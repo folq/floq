@@ -3,12 +3,13 @@ ARG env=dev
 
 RUN mkdir -p /floq
 WORKDIR /floq
-COPY src/apps.json.${env} /floq/src/apps.json
 COPY src /floq/src
 COPY package.json /floq/
+COPY start.sh /floq/
 RUN apk add --no-cache git
 RUN npm install
 
-ENV PORT=80
-EXPOSE 80
-CMD [ "npm", "start" ]
+ENV PORT=3000
+EXPOSE 3000
+
+CMD [ "sh", "start.sh" ]
