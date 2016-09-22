@@ -11,13 +11,13 @@ services:
 - docker
 install:
 - export ENV="test" # TODO: change based on branch?
-- docker build --build-arg env=$ENV -t floq .
+- docker build -t floq .
 - docker run -d -p 127.0.0.1:3000:3000 floq
 - docker ps -a
 after_success:
 - if [ $TRAVIS_BRANCH == 'develop' ]; then
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag floq floq:test blankoslo/floq:$ENV;
+    docker tag floq blankoslo/floq:$ENV;
     docker push blankoslo/floqblank:$ENV;
   fi
 env:
