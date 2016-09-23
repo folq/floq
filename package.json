@@ -1,11 +1,11 @@
 {
-  "name": "frontpage",
+  "name": "floq",
   "version": "0.0.1",
   "description": "",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "author": "",
   "license": "UNLICENSED",
