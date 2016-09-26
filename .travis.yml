@@ -12,34 +12,24 @@ services:
 before_install:
 - openssl aes-256-cbc -K $encrypted_4056667d1569_key -iv $encrypted_4056667d1569_iv
   -in client-secret.json.enc -out client-secret.json -d
-- if [ ! -d ${HOME}/google-cloud-sdk ]; then
-     curl https://sdk.cloud.google.com | bash;
-  fi
+- if [ ! -d ${HOME}/google-cloud-sdk ]; then curl https://sdk.cloud.google.com | bash; fi
+- export PATH=${HOME}/google-cloud-sdk/bin:$PATH
 - gcloud auth activate-service-account --key-file client-secret.json
-- sudo gcloud components update
-- sudo gcloud components update kubectl
+- gcloud components update
+- gcloud components install kubectl
 - gcloud config set container/cluster floq
 - gcloud config set compute/zone europe-west1-b
 - gcloud config set project marine-cycle-97212
 - gcloud container clusters get-credentials floq
 install:
-- export ENV="test"
 - docker build -t floq .
 - docker run -d -p 127.0.0.1:3000:3000 floq
 - docker ps -a
 after_success:
-- if [ $TRAVIS_BRANCH == 'develop' ]; then
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag floq blankoslo/floq:$ENV-$TRAVIS_COMMIT;
-    docker push blankoslo/floq:$ENV-$TRAVIS_COMMIT;
-    export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json";
-    kubectl set image deployment/floq-blank-$ENV floq-blank-$ENV=blankoslo/floq:$ENV-$TRAVIS_COMMIT
-  fi
+- "./deploy"
 env:
   matrix:
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
   global:
-  - secure: ycsFhUHYS68Tl5N2EqYE2iN0HcVCHW+0zAcLqW1/Fi2YwxrVEz6OuqLmDt03iAvn3EMpZli3YZTN0a4bfpuCTHmLaQN0aJVENXiqnVHgOPfMMRrUCi4DxSd0OofR5qBWT1FwjIW70yXXqOOBL5J35Izh231DNHLGssteBgWDg7ETYvHr/bcFrV6qC+wg2lXFCp7A6EVhVUNHalBwGGkV958CDf4llaViyWE3I3tF2RCVrI8LZ5r6vCOEEgIcUYqb9z4i2xFZfURFrX0wMWcZ7rAu96LFCwdQcTtZBOdmGRm96Du+NQ1SYcB97RzSVnEaShG9wYV/979pb0zIXFBVJqBgA1r0NEk6spmIDUsk69NGloOU45eiVgVgUHdHhH+3wfkouVJukiIvE6ZTHVLR+B283fABedokbGdlcq90HDQBjg95B8WLtNwcFInfnOQjNOuCuB4Lcd+kXq8fpy/MqFQ6SQPt+fX3Bh7furJb+iVfxh9jyLYB1NLl2g6ZjD+jiMobscGGn9aUaYo/0cYBmayuxqIMpChSItsQfscHH5i6wlmTJwpK5rrNbBbE0G6b+peXx7kNP/XWEiCt+WCZF63+p9OnS9jv/UK5pwkC0MPmhKSCurhi3qLCEyU/tuNeRwMMWwEHIDgkvkaFZ6lOF2nT4z67GairkItGQrHiK/8=
-  - secure: LKJKUK8XXX0pcSOojoa4BgUML6MF2lZY2wgUSFQe6csSQZReiwCGaFIDWN+SneGF9pGJVJRKzjfKxj7s9gfhtT+8rx1DGsJATW1YRRkJC9ETbwA/6m17Y0Jmclav/J1EFn27bxuq/E6pGm8CvLet/jrOJr1V7Ble6LnpcRhOhbfkrKzr0IzoL+PH3obPINgh3tIBEUf300nzbe5J9/dpclINDgWr4UjHWkHap8j87wn9Vb2HgXpUjepnGfdsSrjOsv76yxF5oPzvx1bmKaelclXE8Cvnp99Fyf3VDi4chlUK/flZ9AmiobBVbDBIZwKbshsWn5KsEKCu4CmwapB/BFtCA3ncs5WjDXpliqSA2Ex8EKi3wv1fkuSkY8aunxAoc7ZI+45hww7H0wHr1YIMetp7hRF00DZZUOWLmZMBTXGfuILl3Dwx+7CZC1Ej8GOHwVIvNLFL22sV0CZYz+UsHLntSgUbMYd8/7isWJEFA7uT1LKQMUoVbzKDossveck3PS77RrJdaXKyemdzo3IEs4lGbdhHb/LMNH8kesIgvAAfMHkGUtoZHootS3YSA8PsTbE7Qf3XPqthvlC9qhMmyBDXBU/EzeGXumZ9cHozuDE5uLuBwtyiHbTlKSBBScvH1abbO39y12mXo5Bd5s6yTfYlbomYMz0fiZTJaFCnlnk=
-  - secure: V0M18PWabvW+H0dO8lze+0Rp9yuWvZ7kYhE06/U/O4QliXhFzNS68lurgHJXp4MaJ2tVZFdO6XYRszHiE6e5gogMtarelf7Yljkh39p80bSiAO1ykpwcga2iJoxofkW8YNwKnjs2nEe8b5p1nLqjG57pG+jIJZMbFfZwh/KtNnw1U/fxDs36knskg0OIBhK4GuZuiYLAcUEXpsEA0Cpe5R35+v2IaMBa92IXUtgHfv53zMIV6zIM0xtRdWrKyDfqERCH26svkXgJb5H1851jfRLP0w0sM4Ou9GvP07Br6Zoz/n3N9UrgHqvqn59u0BDn1MlRyHYFqF7mIGj8YT9uxKJR2pckrorU6bIpXto3W7LVfb6pJfq6b4fPppoiizbKVPrTgbl7jxWbePhvoa57KPuq1Biudh4+s+HahV7dKBkPCz2giLrN2Ibv0xSDpeAIrs1DQ64Dz1WeX98GQ+qMg42fiH94+26A+CUE/AxUUwBRsVkaav+h1P3Py97KiYg3VWHKMmTXzzJFnIK2w7VCa1q/uZlMY+97Ye0K3ny5MmsODcsziBkrnpnJ7OPecvXWmJpEBiQdtdXRlaP18dlk2+qjIhE8hMlCEs0D2qDjpv02m9/AAs3v3G51QLUPEmJmamE2w1LEX0qTgC1Qtxtx17AKDzBUftvWNYdmiaOo+bk=
-
+  - secure: m6XYoLYq4rgRYuGwJgTFebtYBShCw8Lq8/56tUVbKyI3gnyoiqvP2KBIJvKCDCESXJAOuSn7fRSb238fURL2DPOcD+e23KfLhDbNzGfi9TVWt04BrtvQsOiAMqoLpHoVsa55pjUk6MoPfn9ZSX6wTG9g0QgfN44zQ7Ncuj6JWh0Rd/rE87ujrJ7qt0iB4Bw1KrJtnqFvijWocghMkCSgEsidJY+4Ar0s/1ZS+aMZaClNSwn2iYBbkvsWHIeHA3GhYdgMZa3lfF3eHWvkkUcs+W1Dz7TGSEGLs+mG9JOb8whwDdb9Y73k++0EyqPcIQMFX+Eje9le/YXiZkSwWmxuIpTBfcPMbPhGj0UQiVkRU5wuXwyKLJ4IMlY/UKZj6hIOqWOCWx0kLxaEg8nAvMxhvuGhwYE3BQLc4lNV+yPhWIqcNy15Lm/gd+3lsUn2OQkNPQI+POUd+LEhH2Y5OFwbtG6SrnQXioRp33i+UGXm2MEVVPEDBxPOvQmISuf6iJnZwjN0rwwmwXIhHLHcRoEhRB/pVcegdl6CFU2V2EpXCsnEWPdfx/VtjktcY/W3HsXEaOnTc3t7lf9go3Rx52kcp1bGmPkBfm9GEqHvLzGscHnP9N+M69Ps4YrU7BAgE0zR/p+yJp6gGv5Q31UI0pIiop5LnXEokem+W4YgxxYouAo=
+  - secure: AWionJMrb/eoL8j2/+OXR7Kmon13WNcKvXWf+fhObmpK/5bcTgrwVzu7WMZJ/IygSY/Ba/Sq/WzLhFnsGZNP8GVqBhUFUtMW3F315cIOF+jdWh9VbtOentibktKxolkYShHxXm3qDXgykV5sQ5XvJlBSo4u4cRpU+rp18UvCXp9jNIyEWcjPUbT/5+YdYsytsxZH/P0tRkEHFiPSiaUHC5uEXHalgXW5Y5OOAYUr9PeirmcRFIoWLlXLObNY/k5JMukhKkE3qkDW2MEzZ9OEkPtfij4bsbvcRknkgInfXZyRwei7EVY82pttIUUxc+cTJdvY8IWuo2nBcOPu3Bpmag1xoHoeHLuYeKpiQEAfuzKLB2M6KOSnnpZP5u+cMLbHd9qb7Mq+LXL8WgNH09VZnQMC0jCGgrQchjCxtgTFNAquirbtz7QCt6tXxo1WRJ12cyrc75vFRNMIihA5uEsGhsno+hse+tUIjFciubr9CteGByY4voiLoyHFn8AgdaKYQdKpsvR3AAwfGh+uRpKzF10ulcDMfEu5w4tolWYa41HdqvUo5/6iwrZzERsJTwBprmGgCHsZQM7Sz6+00t2N0iWrzkaV7JX0Cr3ACj9qBdakPeTJU2iE36wrE+5Na2W2uheYOKEFpP2u9EQ1esk/2uiVnh8HV/gNuAlC1hK78yY=
