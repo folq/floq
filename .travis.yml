@@ -12,15 +12,7 @@ services:
 before_install:
 - openssl aes-256-cbc -K $encrypted_4056667d1569_key -iv $encrypted_4056667d1569_iv
   -in client-secret.json.enc -out client-secret.json -d
-- if [ ! -d ${HOME}/google-cloud-sdk ]; then curl https://sdk.cloud.google.com | bash; fi
-- export PATH=${HOME}/google-cloud-sdk/bin:$PATH
-- gcloud auth activate-service-account --key-file client-secret.json
-- gcloud components update
-- gcloud components install kubectl
-- gcloud config set container/cluster floq
-- gcloud config set compute/zone europe-west1-b
-- gcloud config set project marine-cycle-97212
-- gcloud container clusters get-credentials floq
+- "./setup_gcloud"
 install:
 - docker build -t floq .
 - docker run -d -p 127.0.0.1:3000:3000 floq
