@@ -14,6 +14,8 @@ if ! [ -z "$ENV" ]; then
   docker tag floq "blankoslo/floq:$TAG";
   docker push "blankoslo/floq:$TAG";
   export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json";
-  kubectl set image deployment/floq-blank-$ENV "floq-blank-$ENV=blankoslo/floq:$TAG";
+  "$HOME/google-cloud-sdk/bin/kubectl" \
+    set image deployment/floq-blank-$ENV \
+    "floq-blank-$ENV=blankoslo/floq:$TAG";
 fi
 
