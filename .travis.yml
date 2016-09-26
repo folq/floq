@@ -10,7 +10,6 @@ sudo: required
 services:
 - docker
 before_install:
-- export CLOUSDK_CORE_DISABLE_PROMPTS=1
 - openssl aes-256-cbc -K $encrypted_4056667d1569_key -iv $encrypted_4056667d1569_iv
   -in client-secret.json.enc -out client-secret.json -d
 - if [ ! -d ${HOME}/google-cloud-sdk ]; then
@@ -37,6 +36,8 @@ after_success:
     kubectl set image deployment/floq-blank-$ENV floq-blank-$ENV=blankoslo/floq:$ENV-$TRAVIS_COMMIT
   fi
 env:
+  matrix:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
   global:
   - secure: ycsFhUHYS68Tl5N2EqYE2iN0HcVCHW+0zAcLqW1/Fi2YwxrVEz6OuqLmDt03iAvn3EMpZli3YZTN0a4bfpuCTHmLaQN0aJVENXiqnVHgOPfMMRrUCi4DxSd0OofR5qBWT1FwjIW70yXXqOOBL5J35Izh231DNHLGssteBgWDg7ETYvHr/bcFrV6qC+wg2lXFCp7A6EVhVUNHalBwGGkV958CDf4llaViyWE3I3tF2RCVrI8LZ5r6vCOEEgIcUYqb9z4i2xFZfURFrX0wMWcZ7rAu96LFCwdQcTtZBOdmGRm96Du+NQ1SYcB97RzSVnEaShG9wYV/979pb0zIXFBVJqBgA1r0NEk6spmIDUsk69NGloOU45eiVgVgUHdHhH+3wfkouVJukiIvE6ZTHVLR+B283fABedokbGdlcq90HDQBjg95B8WLtNwcFInfnOQjNOuCuB4Lcd+kXq8fpy/MqFQ6SQPt+fX3Bh7furJb+iVfxh9jyLYB1NLl2g6ZjD+jiMobscGGn9aUaYo/0cYBmayuxqIMpChSItsQfscHH5i6wlmTJwpK5rrNbBbE0G6b+peXx7kNP/XWEiCt+WCZF63+p9OnS9jv/UK5pwkC0MPmhKSCurhi3qLCEyU/tuNeRwMMWwEHIDgkvkaFZ6lOF2nT4z67GairkItGQrHiK/8=
   - secure: LKJKUK8XXX0pcSOojoa4BgUML6MF2lZY2wgUSFQe6csSQZReiwCGaFIDWN+SneGF9pGJVJRKzjfKxj7s9gfhtT+8rx1DGsJATW1YRRkJC9ETbwA/6m17Y0Jmclav/J1EFn27bxuq/E6pGm8CvLet/jrOJr1V7Ble6LnpcRhOhbfkrKzr0IzoL+PH3obPINgh3tIBEUf300nzbe5J9/dpclINDgWr4UjHWkHap8j87wn9Vb2HgXpUjepnGfdsSrjOsv76yxF5oPzvx1bmKaelclXE8Cvnp99Fyf3VDi4chlUK/flZ9AmiobBVbDBIZwKbshsWn5KsEKCu4CmwapB/BFtCA3ncs5WjDXpliqSA2Ex8EKi3wv1fkuSkY8aunxAoc7ZI+45hww7H0wHr1YIMetp7hRF00DZZUOWLmZMBTXGfuILl3Dwx+7CZC1Ej8GOHwVIvNLFL22sV0CZYz+UsHLntSgUbMYd8/7isWJEFA7uT1LKQMUoVbzKDossveck3PS77RrJdaXKyemdzo3IEs4lGbdhHb/LMNH8kesIgvAAfMHkGUtoZHootS3YSA8PsTbE7Qf3XPqthvlC9qhMmyBDXBU/EzeGXumZ9cHozuDE5uLuBwtyiHbTlKSBBScvH1abbO39y12mXo5Bd5s6yTfYlbomYMz0fiZTJaFCnlnk=
