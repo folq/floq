@@ -9,16 +9,32 @@ notifications:
 sudo: required
 services:
 - docker
+before_install:
+- export CLOUSDK_CORE_DISABLE_PROMPTS=1
+- openssl aes-256-cbc -K $encrypted_4056667d1569_key -iv $encrypted_4056667d1569_iv
+  -in client-secret.json.enc -out client-secret.json -d
+- if [ ! -d ${HOME}/google-cloud-sdk ]; then
+     curl https://sdk.cloud.google.com | bash;
+  fi
+- gcloud auth activate-service-account --key-file client-secret.json
+- gcloud components update
+- gcloud components update kubectl
+- gcloud config set container/cluster floq
+- gcloud config set compute/zone europe-west1-b
+- gcloud config set project marine-cycle-97212
+- gcloud container clusters get-credentials floq
 install:
-- export ENV="test" # TODO: change based on branch?
+- export ENV="test"
 - docker build -t floq .
 - docker run -d -p 127.0.0.1:3000:3000 floq
 - docker ps -a
 after_success:
 - if [ $TRAVIS_BRANCH == 'develop' ]; then
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag floq blankoslo/floq:$ENV;
-    docker push blankoslo/floqblank:$ENV;
+    docker tag floq blankoslo/floq:$ENV-$TRAVIS_COMMIT;
+    docker push blankoslo/floq:$ENV-$TRAVIS_COMMIT;
+    export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json";
+    kubectl set image deployment/floq-blank-$ENV floq-blank-$ENV=blankoslo/floq:$ENV-$TRAVIS_COMMIT
   fi
 env:
   global:

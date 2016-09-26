@@ -4,3 +4,5 @@ node_modules
 npm-debug.log
 apps.json
 /.vagrant
+/client-secret.json
+
