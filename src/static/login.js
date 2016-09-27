@@ -1,3 +1,5 @@
+var acceptedEmailDomain = process.env.FLOQ_ACCEPTED_EMAIL_DOMAIN || 'blankoslo.no';
+
 function onSuccess(googleUser) {
     // POST session to backend, which does the redirect.
     var form = document.createElement('form');
@@ -24,7 +26,7 @@ function renderButton() {
     gapi.load('auth2', function() {
         gapi.auth2.init({
             client_id: '1085640931155-0f6l02jv973og8mi4nb124k6qlrh470p.apps.googleusercontent.com',
-            hosted_domain: 'blankoslo.no'
+            hosted_domain: acceptedEmailDomain
         }).then(function() {
             gapi.signin2.render('goog-signin-button', {
                 'width': 250,
