@@ -13,6 +13,8 @@ if ! [ -z "$ENV" ]; then
   docker login --username="$DOCKER_USER" --password="$DOCKER_PASS";
   docker tag floq "blankoslo/floq:$TAG";
   docker push "blankoslo/floq:$TAG";
+  docker tag floq "blankoslo/floq:$ENV";
+  docker push "blankoslo/floq:$ENV";
   export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json";
   "$HOME/google-cloud-sdk/bin/kubectl" \
     set image deployment/floq-blank-$ENV \
