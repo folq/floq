@@ -1,0 +1,27 @@
+language: node_js
+cache:
+  directories: node_modules
+node_js:
+- '6'
+notifications:
+  slack:
+    secure: zHxNg8TGACY5sCLJmj0P81+EDkYmmSQ5ItTzLrpzzCvZ2CFTibdbEbn03RO+3tEzdrhPTkRf3SLRkXDvVkCh4ZN2+zMSTnLaSuTZI1Ydtrwg+xTO+34U8sSYFp3JmNFwb8WRZ7oWKUevHcuT721qZlHR+PL3Xz5dNBVw8IMFKeMMR610LlGfoGkKjQZKHawUNJ4cjiZwcyU/VlXiOVbpoyu3/wPb0ul+rXwTP2bERb/3ZJF1BKmUGAwnFD7KnJ7U2OdQQFcxW80/m3wjWhtnWrGBAkcfy3Po3+NzitqGUORxawhCXBu4ToTK0FBJJ123A1P5AxBqk4FKHQF6kG0AIZOvXax94Ktci+Uy2I1UinftNM5pOemMKhQ8AmFG3ohBLlrth4bYXQf/qBVuargB7+4W4VjTRHgVa1BLHZppDa2m8DjXTzN7g6NiRZDEo5LUJ+ygdH/0evgqQT+RZoxhOreUcunWSg5q3UUMWmvZ5rAwiOCadIGSAyeLR/8J9HM2+pUVSvWb3vTDMdh/I02bN6oOxtcUhH7pO/15+klqWL5ZXhlYgxD6ObsyBeB2l//T7scerzkLmSMS3BcCn1ARaYU7nj4WfulgbcEvlcVBNQ7+It9WkDHJ+GUs8jlcp7InB1wGQbc/2GKmXm9EOjU9hCUpDHG4e4TFYrxGrO9g1LA=
+sudo: required
+services:
+- docker
+before_install:
+- openssl aes-256-cbc -K $encrypted_4056667d1569_key -iv $encrypted_4056667d1569_iv
+  -in client-secret.json.enc -out client-secret.json -d
+- "./setup_gcloud"
+install:
+- docker build -t floq .
+- docker run -d -p 127.0.0.1:3000:3000 floq
+- docker ps -a
+after_success:
+- "./deploy"
+env:
+  matrix:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  global:
+  - secure: m6XYoLYq4rgRYuGwJgTFebtYBShCw8Lq8/56tUVbKyI3gnyoiqvP2KBIJvKCDCESXJAOuSn7fRSb238fURL2DPOcD+e23KfLhDbNzGfi9TVWt04BrtvQsOiAMqoLpHoVsa55pjUk6MoPfn9ZSX6wTG9g0QgfN44zQ7Ncuj6JWh0Rd/rE87ujrJ7qt0iB4Bw1KrJtnqFvijWocghMkCSgEsidJY+4Ar0s/1ZS+aMZaClNSwn2iYBbkvsWHIeHA3GhYdgMZa3lfF3eHWvkkUcs+W1Dz7TGSEGLs+mG9JOb8whwDdb9Y73k++0EyqPcIQMFX+Eje9le/YXiZkSwWmxuIpTBfcPMbPhGj0UQiVkRU5wuXwyKLJ4IMlY/UKZj6hIOqWOCWx0kLxaEg8nAvMxhvuGhwYE3BQLc4lNV+yPhWIqcNy15Lm/gd+3lsUn2OQkNPQI+POUd+LEhH2Y5OFwbtG6SrnQXioRp33i+UGXm2MEVVPEDBxPOvQmISuf6iJnZwjN0rwwmwXIhHLHcRoEhRB/pVcegdl6CFU2V2EpXCsnEWPdfx/VtjktcY/W3HsXEaOnTc3t7lf9go3Rx52kcp1bGmPkBfm9GEqHvLzGscHnP9N+M69Ps4YrU7BAgE0zR/p+yJp6gGv5Q31UI0pIiop5LnXEokem+W4YgxxYouAo=
+  - secure: AWionJMrb/eoL8j2/+OXR7Kmon13WNcKvXWf+fhObmpK/5bcTgrwVzu7WMZJ/IygSY/Ba/Sq/WzLhFnsGZNP8GVqBhUFUtMW3F315cIOF+jdWh9VbtOentibktKxolkYShHxXm3qDXgykV5sQ5XvJlBSo4u4cRpU+rp18UvCXp9jNIyEWcjPUbT/5+YdYsytsxZH/P0tRkEHFiPSiaUHC5uEXHalgXW5Y5OOAYUr9PeirmcRFIoWLlXLObNY/k5JMukhKkE3qkDW2MEzZ9OEkPtfij4bsbvcRknkgInfXZyRwei7EVY82pttIUUxc+cTJdvY8IWuo2nBcOPu3Bpmag1xoHoeHLuYeKpiQEAfuzKLB2M6KOSnnpZP5u+cMLbHd9qb7Mq+LXL8WgNH09VZnQMC0jCGgrQchjCxtgTFNAquirbtz7QCt6tXxo1WRJ12cyrc75vFRNMIihA5uEsGhsno+hse+tUIjFciubr9CteGByY4voiLoyHFn8AgdaKYQdKpsvR3AAwfGh+uRpKzF10ulcDMfEu5w4tolWYa41HdqvUo5/6iwrZzERsJTwBprmGgCHsZQM7Sz6+00t2N0iWrzkaV7JX0Cr3ACj9qBdakPeTJU2iE36wrE+5Na2W2uheYOKEFpP2u9EQ1esk/2uiVnh8HV/gNuAlC1hK78yY=
