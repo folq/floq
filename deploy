@@ -18,6 +18,7 @@ if ! [ -z "$ENV" ]; then
   export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json";
   "$HOME/google-cloud-sdk/bin/kubectl" \
     set image deployment/floq-blank-$ENV \
-    "floq-blank-$ENV=blankoslo/floq:$TAG";
+    "floq-blank-$ENV=blankoslo/floq:$TAG" \
+    --namespace="floq-blank-${ENV}";
 fi
 
