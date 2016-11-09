@@ -6,7 +6,7 @@
         "icon": "timer",
         "script": "https://storage.googleapis.com/floq/timetracker/js/app.bundle.js",
         "config": {
-            "apiUri": "https://api.floq.no"
+            "apiUri": "https://api-blank.floq.no"
         }
     },
 
@@ -17,7 +17,7 @@
         "icon": "event",
         "script": "https://storage.googleapis.com/floq/calendar/js/app.bundle.js",
         "config": {
-            "apiUri": "https://api.floq.no"
+            "apiUri": "https://api-blank.floq.no"
         }
     },
 
@@ -28,7 +28,7 @@
         "script": "https://storage.googleapis.com/floq/employees/js/app.bundle.js",
         "type": "app",
         "config": {
-            "apiUri": "https://api.floq.no"
+            "apiUri": "https://api-blank.floq.no"
         }
     },
 
@@ -39,7 +39,7 @@
         "icon": "book",
         "script": "https://storage.googleapis.com/floq/projects/js/app.bundle.js",
         "config": {
-            "apiUri": "https://api.floq.no"
+            "apiUri": "https://api-blank.floq.no"
         }
     },
 
@@ -50,7 +50,7 @@
         "icon": "people",
         "script": "https://storage.googleapis.com/floq/staffing/js/app.bundle.js",
         "config": {
-            "apiUri": "https://api.floq.no"
+            "apiUri": "https://api-blank.floq.no"
         }
     },
 
@@ -61,7 +61,7 @@
         "icon": "trending_up",
         "script": "https://storage.googleapis.com/floq/reports/js/app.bundle.js",
         "config": {
-            "apiUri": "https://api.floq.no"
+            "apiUri": "https://api-blank.floq.no"
         }
     },
 
@@ -72,7 +72,7 @@
         "icon": "attach_money",
         "script": "https://storage.googleapis.com/floq/staffing/js/app.bundle.js",
         "config": {
-            "apiUri": "https://api.floq.no"
+            "apiUri": "https://api-blank.floq.no"
         }
     },
 
@@ -81,9 +81,9 @@
         "name": "Logogenerator",
         "type": "app",
         "icon": "create",
-        "script": "https://blank-logogen.herokuapp.com/static/app.js",
+        "script": "https://logogen.blankoslo.no/static/app.js",
         "config": {
-            "diamondUri": "https://blank-logogen.herokuapp.com/diamant.svg"
+            "diamondUri": "https://logogen.blankoslo.no/diamant.svg"
         }
     },
 
