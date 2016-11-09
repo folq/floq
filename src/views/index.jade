@@ -3,7 +3,9 @@ extends ./layout.jade
 block content
     .main-content.content-box
         h3 Tilgjengelige apps
-        ul
-            each app in apps
-                li
-                    a(href=app.short_name)= app.name
+        ul(class='apps')
+          each app in apps
+              li(class='app')
+                a(href=app.short_name)
+                  i(class='material-icons')=app.icon ? app.icon : 'apps'
+                  span= app.name

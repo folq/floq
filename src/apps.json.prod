@@ -3,6 +3,7 @@
         "short_name": "timestamp",
         "name": "Timeføring",
         "type": "app",
+        "icon": "timer",
         "script": "https://storage.googleapis.com/floq/timetracker/js/app.bundle.js",
         "config": {
             "apiUri": "https://api.floq.no"
@@ -13,6 +14,7 @@
         "short_name": "calendar",
         "name": "Fraværskalender",
         "type": "app",
+        "icon": "event",
         "script": "https://storage.googleapis.com/floq/calendar/js/app.bundle.js",
         "config": {
             "apiUri": "https://api.floq.no"
@@ -22,6 +24,7 @@
     {
         "short_name": "employees",
         "name": "Ansattliste",
+        "icon": "accessibility",
         "script": "https://storage.googleapis.com/floq/employees/js/app.bundle.js",
         "type": "app",
         "config": {
@@ -33,6 +36,7 @@
         "short_name": "projects",
         "name": "Prosjekter",
         "type": "app",
+        "icon": "book",
         "script": "https://storage.googleapis.com/floq/projects/js/app.bundle.js",
         "config": {
             "apiUri": "https://api.floq.no"
@@ -43,6 +47,7 @@
         "short_name": "staffing",
         "name": "Bemanning",
         "type": "app",
+        "icon": "people",
         "script": "https://storage.googleapis.com/floq/staffing/js/app.bundle.js",
         "config": {
             "apiUri": "https://api.floq.no"
@@ -53,6 +58,7 @@
         "short_name": "reports",
         "name": "Rapporter",
         "type": "app",
+        "icon": "trending_up",
         "script": "https://storage.googleapis.com/floq/reports/js/app.bundle.js",
         "config": {
             "apiUri": "https://api.floq.no"
@@ -63,6 +69,7 @@
         "short_name": "balance",
         "name": "Avstemming",
         "type": "app",
+        "icon": "attach_money",
         "script": "https://storage.googleapis.com/floq/staffing/js/app.bundle.js",
         "config": {
             "apiUri": "https://api.floq.no"
@@ -73,6 +80,7 @@
         "short_name": "logo",
         "name": "Logogenerator",
         "type": "app",
+        "icon": "create",
         "script": "https://blank-logogen.herokuapp.com/static/app.js",
         "config": {
             "diamondUri": "https://blank-logogen.herokuapp.com/diamant.svg"
@@ -83,6 +91,7 @@
         "short_name": "prat",
         "name": "Prat",
         "type": "external",
+        "icon": "chat_bubble_outline",
         "url": "https://prat.blankoslo.no"
     },
 
@@ -90,6 +99,7 @@
         "short_name": "slack",
         "name": "Slack",
         "type": "external",
+        "icon": "chat",
         "url": "https://heltblank.slack.com"
     },
 
@@ -97,6 +107,7 @@
         "short_name": "utstyrsliste",
         "name": "Utstyrsliste",
         "type": "iframe",
+        "icon": "computer",
         "url": "https://docs.google.com/spreadsheets/d/1K-okaHKiYPvpR9Bf_p4dm63qcQ_Xl5qT58ZjIAmt3RY"
     }
 ]
