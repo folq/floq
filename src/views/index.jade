@@ -5,6 +5,6 @@ block content
         ul(class='apps')
           each app in apps
               li(class='app')
-                a(href=app.url ? app.url : app.short_name)
+                a(href=app.type=='external' ? app.url : app.short_name)
                   i(class='material-icons')=app.icon ? app.icon : 'apps'
                   span= app.name
