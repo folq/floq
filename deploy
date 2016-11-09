@@ -15,11 +15,8 @@ if ! [ -z "$ENV" ]; then
   docker push "blankoslo/floq:$TAG";
   docker tag floq "blankoslo/floq:$ENV";
   docker push "blankoslo/floq:$ENV";
+
   export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json";
-  "$HOME/google-cloud-sdk/bin/kubectl" \
-    set image deployment/floq-blank-$ENV \
-    "floq-blank-$ENV=blankoslo/floq:$TAG" \
-    --namespace="floq-blank-${ENV}";
 
   "$HOME/google-cloud-sdk/bin/kubectl" delete secret \
     "floq-secret-blank-${ENV}"\
@@ -28,5 +25,10 @@ if ! [ -z "$ENV" ]; then
     "floq-secret-blank-${ENV}" \
     --namespace="floq-blank-${ENV}" \
     --from-file=apps.json="src/apps.json.${ENV}";
+
+  "$HOME/google-cloud-sdk/bin/kubectl" \
+    set image deployment/floq-blank-$ENV \
+    "floq-blank-$ENV=blankoslo/floq:$TAG" \
+    --namespace="floq-blank-${ENV}";
 fi
 
