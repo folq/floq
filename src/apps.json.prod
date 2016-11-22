@@ -70,7 +70,7 @@
         "name": "Avstemming",
         "type": "app",
         "icon": "attach_money",
-        "script": "https://storage.googleapis.com/floq/staffing/js/app.bundle.js",
+        "script": "https://storage.googleapis.com/floq/balance/js/app.bundle.js",
         "config": {
             "apiUri": "https://api-blank.floq.no"
         }
