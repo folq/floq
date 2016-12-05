@@ -2,7 +2,7 @@ FROM mhart/alpine-node
 
 # Required ENV variables:
 # - API_TOKEN_SECRET (secret shared with floq-api)
-# - FLOQ_ACCEPTED_EMAIL_DOMAIN (e.g. 'blankoslo.no')
+# - FLOQ_ACCEPTED_EMAIL_DOMAINS (e.g. 'blankoslo.no,blank.no')
 
 RUN mkdir -p /floq
 WORKDIR /floq

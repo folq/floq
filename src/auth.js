@@ -4,7 +4,7 @@ var ga = new GoogleAuth();
 var jwtClient = new ga.JWTClient();
 
 var aud = '1085640931155-0f6l02jv973og8mi4nb124k6qlrh470p.apps.googleusercontent.com';
-var acceptedEmailDomain = process.env.FLOQ_ACCEPTED_EMAIL_DOMAIN || 'blankoslo.no';
+var acceptedEmailDomains = process.env.FLOQ_ACCEPTED_EMAIL_DOMAINS.split(",") || ['blank.no'];
 
 function requiresLogin(req, res, next) {
     // TODO: Check if valid employee loaded.
@@ -54,8 +54,8 @@ function authenticateGoogleIdToken(token) {
                 reject('Wrong issuer.');
                 return;
             }
-          
-            if (payload.hd !== acceptedEmailDomain) {
+
+            if (acceptedEmailDomains.indexOf(payload.hd) === -1) {
                 reject('Wrong hosted domain.');
                 return;
             }
