@@ -48,8 +48,8 @@ app.use(helmet.csp({
         frameSrc: ['https://accounts.google.com:443'],
         fontSrc: ['data:', 'https://fonts.gstatic.com:443'],
         connectSrc: ["'self'"].concat(xhrHosts).concat(
-            // allow localhost:8080 when in dev mode
-            process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080']
+            // allow localhost:8080 and localhost:8002 when in dev mode
+            process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080', 'http://localhost:8002', 'ws://localhost:8002']
         ),
         imgSrc: ["'self'", 'data:', 'https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443'],
         frameSrc: ["'self'", 'https://accounts.google.com/'].concat(iframeHosts)
