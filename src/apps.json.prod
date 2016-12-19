@@ -83,7 +83,7 @@
         "icon": "assessment",
         "script": "https://storage.googleapis.com/floq/rank/js/app.bundle.js",
         "config": {
-            "apiUri": "https://api-blank-test.floq.no"
+            "apiUri": "https://api-blank.floq.no"
         }
     },
 
