@@ -70,6 +70,16 @@
     },
 
     {
+        "short_name": "rank",
+        "name": "Blank-Rank",
+        "type": "app",
+        "script": "https://storage.googleapis.com/floq-test/rank/js/app.bundle.js",
+        "config": {
+            "apiUri": "https://api-blank-test.floq.no"
+        }
+    },
+
+    {
         "short_name": "prat",
         "name": "Prat",
         "type": "external",

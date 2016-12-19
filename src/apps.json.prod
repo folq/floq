@@ -77,6 +77,17 @@
     },
 
     {
+        "short_name": "rank",
+        "name": "Blank-Rank",
+        "type": "app",
+        "icon": "assessment",
+        "script": "https://storage.googleapis.com/floq/rank/js/app.bundle.js",
+        "config": {
+            "apiUri": "https://api-blank-test.floq.no"
+        }
+    },
+
+    {
         "short_name": "logo",
         "name": "Logogenerator",
         "type": "app",
