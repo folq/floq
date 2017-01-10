@@ -8,7 +8,7 @@ var URL = require('url');
 var helmet = require('helmet');
 
 // Get all registered apps.
-var appRegs = require('./apps.json');
+var appRegs = require('../config/apps.json');
 
 Array.prototype.unique = function () {
     return this.filter((elem, pos) => this.indexOf(elem) == pos);

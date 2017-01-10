@@ -1,3 +1,3 @@
 #!/bin/sh
-cp /etc/floq-secret/apps.json "${PWD}/src/apps.json"
+cp /etc/floq-secret/apps.json "${PWD}/config/apps.json"
 npm start
