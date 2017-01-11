@@ -6,6 +6,7 @@ FROM mhart/alpine-node
 
 RUN mkdir -p /floq
 WORKDIR /floq
+COPY favicon/* /floq/
 COPY src /floq/src
 COPY package.json /floq/
 COPY start.sh /floq/
