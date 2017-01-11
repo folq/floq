@@ -41,19 +41,19 @@ app.set('view engine', 'jade');
 
 app.use(helmet());
 app.use(helmet.csp({
-    directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-eval'", 'https://apis.google.com:443', 'https://storage.googleapis.com:443'].concat(scriptHosts),
-        styleSrc: ["'unsafe-inline'", "'self'", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443'],
-        frameSrc: ['https://accounts.google.com:443'],
-        fontSrc: ['data:', 'https://fonts.gstatic.com:443'],
-        connectSrc: ["'self'"].concat(xhrHosts).concat(
-            // allow localhost:8080 and localhost:8002 when in dev mode
-            process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080', 'http://localhost:8002', 'ws://localhost:8002']
-        ),
-        imgSrc: ["'self'", 'data:', 'https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443'],
-        frameSrc: ["'self'", 'https://accounts.google.com/'].concat(iframeHosts)
-    }
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-eval'", 'https://apis.google.com:443', 'https://storage.googleapis.com:443', 'https://use.typekit.net:443', "'unsafe-inline'"].concat(scriptHosts),
+    styleSrc: ["'unsafe-inline'", "'self'", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443'],
+    frameSrc: ['https://accounts.google.com:443'],
+    fontSrc: ['data:', 'https://fonts.gstatic.com:443', 'https://use.typekit.net:443'],
+    connectSrc: ["'self'"].concat(xhrHosts).concat(
+      // allow localhost:8080 and localhost:8002 when in dev mode
+      process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080', 'http://localhost:8002', 'ws://localhost:8002']
+    ),
+    imgSrc: ["'self'", 'data:', 'https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443', 'https://p.typekit.net:443'],
+    frameSrc: ["'self'", 'https://accounts.google.com/'].concat(iframeHosts)
+  }
 }))
 
 
