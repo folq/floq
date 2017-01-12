@@ -57,7 +57,7 @@ function authenticateGoogleIdToken(token) {
             }
 
             if (acceptedEmailDomains.indexOf(payload.hd) === -1) {
-                reject('Wrong hosted domain.');
+                reject('Wrong hosted domain: ' + payload.hd);
                 return;
             }
 
