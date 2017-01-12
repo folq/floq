@@ -26,7 +26,7 @@ if ! [ -z "$ENV" ]; then
   "$HOME/google-cloud-sdk/bin/kubectl" create secret generic \
     "floq-secret-blank-${ENV}" \
     --namespace="floq-blank-${ENV}" \
-    --from-file=apps.json="src/apps.json.${ENV}";
+    --from-file=apps.json="config/apps.json.${ENV}";
 
   "$HOME/google-cloud-sdk/bin/kubectl" \
     set image deployment/floq-blank-$ENV \

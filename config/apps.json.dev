@@ -70,6 +70,16 @@
     },
 
     {
+        "short_name": "rank",
+        "name": "Blank-Rank",
+        "type": "app",
+        "script": "http://localhost:8002/app.bundle.js",
+        "config": {
+            "apiUri": "https://api-blank-dev.floq.no"
+        }
+    },
+
+    {
         "short_name": "prat",
         "name": "Prat",
         "type": "external",

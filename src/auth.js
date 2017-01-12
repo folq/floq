@@ -4,7 +4,8 @@ var ga = new GoogleAuth();
 var jwtClient = new ga.JWTClient();
 
 var aud = '1085640931155-0f6l02jv973og8mi4nb124k6qlrh470p.apps.googleusercontent.com';
-var acceptedEmailDomains = process.env.FLOQ_ACCEPTED_EMAIL_DOMAINS.split(",") || ['blank.no'];
+var acceptedEmailDomains =
+  (process.env.FLOQ_ACCEPTED_EMAIL_DOMAINS || 'blank.no').split(",");
 
 function requiresLogin(req, res, next) {
     // TODO: Check if valid employee loaded.
