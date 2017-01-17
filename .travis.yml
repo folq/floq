@@ -5,20 +5,20 @@ node_js:
 - '6'
 notifications:
   slack:
-    secure: zHxNg8TGACY5sCLJmj0P81+EDkYmmSQ5ItTzLrpzzCvZ2CFTibdbEbn03RO+3tEzdrhPTkRf3SLRkXDvVkCh4ZN2+zMSTnLaSuTZI1Ydtrwg+xTO+34U8sSYFp3JmNFwb8WRZ7oWKUevHcuT721qZlHR+PL3Xz5dNBVw8IMFKeMMR610LlGfoGkKjQZKHawUNJ4cjiZwcyU/VlXiOVbpoyu3/wPb0ul+rXwTP2bERb/3ZJF1BKmUGAwnFD7KnJ7U2OdQQFcxW80/m3wjWhtnWrGBAkcfy3Po3+NzitqGUORxawhCXBu4ToTK0FBJJ123A1P5AxBqk4FKHQF6kG0AIZOvXax94Ktci+Uy2I1UinftNM5pOemMKhQ8AmFG3ohBLlrth4bYXQf/qBVuargB7+4W4VjTRHgVa1BLHZppDa2m8DjXTzN7g6NiRZDEo5LUJ+ygdH/0evgqQT+RZoxhOreUcunWSg5q3UUMWmvZ5rAwiOCadIGSAyeLR/8J9HM2+pUVSvWb3vTDMdh/I02bN6oOxtcUhH7pO/15+klqWL5ZXhlYgxD6ObsyBeB2l//T7scerzkLmSMS3BcCn1ARaYU7nj4WfulgbcEvlcVBNQ7+It9WkDHJ+GUs8jlcp7InB1wGQbc/2GKmXm9EOjU9hCUpDHG4e4TFYrxGrO9g1LA=
+    secure: JJGp2GrCqvDFrGWqNl/9AW4nCQhpE/QQ/vifuwd+I+3AiaDVZsiOzspFybhGFurovuU4dbW9RdgDr4FBe2ljwR7R2Shdz5iKPlVnayqIcwi9ZWIzxFr2Egq3R0Jfh/b5k0dQuCe3dmr5IXAjxumQoFW+IOpx4GPTZFaGwBrU5gFR6PROsztRtYaTXQA4+NiWg9T5mfJRqQLa27vjlX/OabaZlm2m30c8gIufsvazNox9rnpHjNq8aj036op/gnQveHQf5kVJjOc2/E26dWdAQKKV5GY926iCUYgjs3kJXAtNZpePGz+430Jsjq3b5Bn29t0t78Wue8R/i4jc47TKB4ydlSljndXokh2F6RW6jomMBi1VRLhcKENo9zIxBSMa+JzfoHuEZld5OrARAxueTQZigGdAnQPCQcMSIMGQap8SVkRw+x68Iv7zvFMPqozOeITn3ukEtXqea6KSWA76wuf5notDgCmOt+kCdefDxAF9LPFCib/uXbi/caLBxCx9be7cxYeRZ/yznzGNZmgexBQykvE2TYgPa+e+G8qnbS2JHrhNEaEuZhrIXp6EfU80dUQWrisTc+DfAjBuf18LbXcWMkf+ldVlWjcVXidcE4mGKSwa4M81yNKZmuN8JHVIbCQ0t40VUGd+qnxtowcgHNWRnlwrH9x8/rJHNc2qzZI=
 sudo: required
 services:
 - docker
 before_install:
-- openssl aes-256-cbc -K $encrypted_4056667d1569_key -iv $encrypted_4056667d1569_iv
-  -in client-secret.json.enc -out client-secret.json -d
-- "./setup_gcloud"
+- openssl aes-256-cbc -K $encrypted_c8fe184f3cab_key -iv $encrypted_c8fe184f3cab_iv
+  -in deployment/client-secret.json.enc -out client-secret.json -d
+- deployment/setup_gcloud
 install:
 - docker build -t floq .
 - docker run -d -p 127.0.0.1:3000:3000 floq
 - docker ps -a
 after_success:
-- "./deploy"
+- deployment/deploy
 env:
   matrix:
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
