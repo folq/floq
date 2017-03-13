@@ -142,3 +142,6 @@ td.icon-cell {
   color:white;
   margin-bottom: 5px;
 }
+.mdl-layout__content {
+  will-change: transform;
+}
