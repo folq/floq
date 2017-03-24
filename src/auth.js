@@ -18,7 +18,8 @@ function requiresLogin(req, res, next) {
                 (data) => {
                     var date = new Date();
                     var currentTime = date.getTime() / 1000;
-
+                    console.log(JSON.stringify(data, null, 2));
+                    console.log('currentTime: ', currentTime);
                     if (data.exp - currentTime < TOKEN_BUFFER_SECONDS) {
                         res.redirect('login?to=' + req.originalUrl);
                     }
