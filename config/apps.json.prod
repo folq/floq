@@ -103,7 +103,7 @@
         "name": "Prat",
         "type": "external",
         "icon": "chat_bubble_outline",
-        "url": "https://prat.blankoslo.no"
+        "url": "https://prat.blank.no"
     },
 
     {
@@ -120,5 +120,13 @@
         "type": "external",
         "icon": "computer",
         "url": "https://docs.google.com/spreadsheets/d/1K-okaHKiYPvpR9Bf_p4dm63qcQ_Xl5qT58ZjIAmt3RY"
+    },
+
+    {
+        "short_name": "about",
+        "name": "about:blank",
+        "type": "external",
+        "icon": "web_asset",
+        "url": "https://about.blank.no"
     }
 ]
