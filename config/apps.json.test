@@ -70,6 +70,17 @@
     },
 
     {
+        "short_name": "overtime",
+        "name": "Overtid",
+        "type": "app",
+        "icon": "schedule",
+        "script": "https://storage.googleapis.com/floq-test/overtime/js/app.bundle.js",
+        "config": {
+            "apiUri": "https://api-blank-test.floq.no"
+        }
+    },
+
+    {
         "short_name": "rank",
         "name": "Blank-Rank",
         "type": "app",
