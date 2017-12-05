@@ -84,10 +84,6 @@ app.get('/login', (req, res) => {
     });
 });
 
-app.get('/.well-known/acme-challenge/JDVxuhsuDleA8IQxF_lJvlqqzP7dlRMdCUSgOowh1es', (req, res) => {
-    res.send('JDVxuhsuDleA8IQxF_lJvlqqzP7dlRMdCUSgOowh1es.hTPHQKtWe1ObBxxLzHTEprkxaE_CflYxL_813-nC78I');
-});
-
 app.post('/login', (req, res) => {
     auth.authenticateGoogleIdToken(req.body.id_token)
         .then(
