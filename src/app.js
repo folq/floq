@@ -84,6 +84,15 @@ app.get('/login', (req, res) => {
     });
 });
 
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/login?to=/');    
+});
+
+app.get('/unauthorized', (req, res) => {
+    res.render('unauthorized');
+});
+
 app.post('/login', (req, res) => {
     auth.authenticateGoogleIdToken(req.body.id_token)
         .then(
@@ -93,6 +102,7 @@ app.post('/login', (req, res) => {
                     // TODO: Should fetch employee ID instead.
                     email: data.email
                 });
+                
 
                 req.session.email = data.email;
 
@@ -103,7 +113,10 @@ app.post('/login', (req, res) => {
                     auth.validRedirect(app, req.query.to) ? req.query.to : '/'
                 );
             },
-            (err) => res.status(401).send(err)
+            (err) => {
+
+                res.redirect('/unauthorized?err='+err);
+            }
         );
 });
 

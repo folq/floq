@@ -12,7 +12,10 @@ html(lang='en')
 
             .mdl-layout__drawer
                 .mdl-layout-title Meny
+
                 nav.mdl-navigation
+                    a.mdl-navigation__link(href='/logout') Logg ut
+
                     each app in apps
                         if app.type == 'external'
                             a.mdl-navigation__link(href='#{app.url}', class='#{app.type}', target='_blank', rel='noopener noreferrer')=app.name
