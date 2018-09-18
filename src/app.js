@@ -44,7 +44,7 @@ app.use(helmet.csp({
   directives: {
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", "'unsafe-eval'", 'https://apis.google.com:443', 'https://storage.googleapis.com:443', 'https://use.typekit.net:443', "'unsafe-inline'"].concat(scriptHosts),
-    styleSrc: ["'unsafe-inline'", "'self'", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443'],
+    styleSrc: ["'unsafe-inline'", "'self'", "blob:", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443', 'https://fonts.googleapis.com:443'],
     frameSrc: ['https://accounts.google.com:443'],
     fontSrc: ['data:', 'https://fonts.gstatic.com:443', 'https://use.typekit.net:443'],
     connectSrc: ["'self'", "https://api.cloudinary.com"].concat(xhrHosts).concat(
@@ -52,7 +52,7 @@ app.use(helmet.csp({
       process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080', 'http://localhost:8002', 'ws://localhost:8002', 'http://localhost:8081', 'ws://localhost:8081']
     ),
     imgSrc: ["'self'", 'data:', 'https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443', 'https://p.typekit.net:443', 'https://res.cloudinary.com'],
-    frameSrc: ["'self'", 'https://accounts.google.com/'].concat(iframeHosts)
+    frameSrc: ["'self'", 'https://accounts.google.com/', 'https://content-sheets.googleapis.com/', 'https://content.googleapis.com/'].concat(iframeHosts)
   }
 }))
 
