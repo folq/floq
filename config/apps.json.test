@@ -109,5 +109,16 @@
         "name": "Utstyrsliste",
         "type": "iframe",
         "url": "https://docs.google.com/spreadsheets/d/1K-okaHKiYPvpR9Bf_p4dm63qcQ_Xl5qT58ZjIAmt3RY"
+    },
+
+    {
+        "short_name": "kpi",
+        "name": "KPI",
+        "type": "app",
+        "icon": "bar_chart",
+        "script": "https://storage.googleapis.com/floq-test/kpi/js/app.bundle.js",
+        "config": {
+            "apiUri": "https://api-blank-test.floq.no"
+        }
     }
 ]
