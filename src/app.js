@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+const fetch = require('node-fetch');
 
 var auth = require('./auth.js');
 var common = require('common');
@@ -47,7 +48,7 @@ app.use(helmet.csp({
     styleSrc: ["'unsafe-inline'", "'self'", "blob:", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443', 'https://fonts.googleapis.com:443'],
     frameSrc: ['https://accounts.google.com:443'],
     fontSrc: ['data:', 'https://fonts.gstatic.com:443', 'https://use.typekit.net:443'],
-    connectSrc: ["'self'", "https://api.cloudinary.com"].concat(xhrHosts).concat(
+    connectSrc: ["'self'", "https://api.cloudinary.com", "https://tripletex.no"].concat(xhrHosts).concat(
       // allow localhost:8080 and localhost:8002 when in dev mode
       process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080', 'http://localhost:8002', 'ws://localhost:8002', 'http://localhost:8081', 'ws://localhost:8081']
     ),
@@ -107,10 +108,8 @@ app.post('/login', (req, res) => {
         );
 });
 
-
 /* PRIVATE PATHS */
 app.use(auth.requiresLogin);
-
 
 app.get('/', (req, res) => {
     res.render('index', {
@@ -118,6 +117,17 @@ app.get('/', (req, res) => {
         apps: appRegs
     });
 });
+
+const invoiceApiUrl = (dateFrom, dateTo) => `https://tripletex.no/v2/invoice?invoiceDateFrom=${dateFrom}&invoiceDateTo=${dateTo}&count=1000&fields=isCreditNote,invoiceDate`
+app.get('/invoices', (req, res) => {
+    const dateFrom = req.query.dateFrom
+    const dateTo = req.query.dateTo
+    const headers = { 'Authorization': `Basic ${process.env.TRIPLETEX_SESSION_KEY || 'Token not found'}` }
+    fetch( invoiceApiUrl(dateFrom, dateTo), { headers } )
+        .then( invoiceResult => invoiceResult.status === 200 ? invoiceResult.json() : Promise.reject() )
+        .then( data => res.json(data) )
+        .catch( err => res.status(500).send('Something went wrong') )
+})
 
 // Set up paths for each registered app.
 appRegs.forEach((appReg) => {
