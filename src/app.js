@@ -119,14 +119,40 @@ app.get('/', (req, res) => {
 });
 
 const invoiceApiUrl = (dateFrom, dateTo) => `https://tripletex.no/v2/invoice?invoiceDateFrom=${dateFrom}&invoiceDateTo=${dateTo}&count=1000&fields=isCreditNote,invoiceDate`
-app.get('/invoices', (req, res) => {
+const tripleTexSessionUrl = (expirationDate) => `https://tripletex.no/v2/token/session/:create?consumerToken=${process.env.TRIPLETEX_CONSUMER_TOKEN}&employeeToken=${process.env.TRIPLETEX_EMPLOYEE_TOKEN}&expirationDate=${expirationDate}`
+const tripleTexSessionExpired = (token) => new Date(token.expirationDate) <= new Date()
+
+const tomorrow = () => {
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
+}
+
+var tripleTexSession = null;
+
+const getTripleTexSession = async () => await (await fetch(tripleTexSessionUrl(tomorrow().toISOString().split('T')[0]), {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })).json()
+
+
+app.get('/invoices', async (req, res) => {
+    if (tripleTexSession === null || tripleTexSessionExpired(tripleTexSession)) {
+        session = await getTripleTexSession()
+        tripleTexSession = session.value
+    }
     const dateFrom = req.query.dateFrom
     const dateTo = req.query.dateTo
-    const headers = { 'Authorization': `Basic ${process.env.TRIPLETEX_SESSION_KEY || 'Token not found'}` }
+    const headers = { 'Authorization': `Basic ${Buffer.from(`0:${tripleTexSession.token}`).toString('base64')}` }
     fetch( invoiceApiUrl(dateFrom, dateTo), { headers } )
         .then( invoiceResult => invoiceResult.status === 200 ? invoiceResult.json() : Promise.reject() )
         .then( data => res.json(data) )
-        .catch( err => res.status(500).send('Something went wrong') )
+        .catch( err => {
+            res.status(500).send(err)
+        } )
 })
 
 // Set up paths for each registered app.
