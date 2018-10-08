@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+const fetch = require('node-fetch');
 
 var auth = require('./auth.js');
 var common = require('common');
@@ -44,15 +45,15 @@ app.use(helmet.csp({
   directives: {
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", "'unsafe-eval'", 'https://apis.google.com:443', 'https://storage.googleapis.com:443', 'https://use.typekit.net:443', "'unsafe-inline'"].concat(scriptHosts),
-    styleSrc: ["'unsafe-inline'", "'self'", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443'],
+    styleSrc: ["'unsafe-inline'", "'self'", "blob:", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443', 'https://fonts.googleapis.com:443'],
     frameSrc: ['https://accounts.google.com:443'],
     fontSrc: ['data:', 'https://fonts.gstatic.com:443', 'https://use.typekit.net:443'],
-    connectSrc: ["'self'", "https://api.cloudinary.com"].concat(xhrHosts).concat(
+    connectSrc: ["'self'", "https://api.cloudinary.com", "https://tripletex.no"].concat(xhrHosts).concat(
       // allow localhost:8080 and localhost:8002 when in dev mode
       process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080', 'http://localhost:8002', 'ws://localhost:8002', 'http://localhost:8081', 'ws://localhost:8081']
     ),
     imgSrc: ["'self'", 'data:', 'https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443', 'https://p.typekit.net:443', 'https://res.cloudinary.com'],
-    frameSrc: ["'self'", 'https://accounts.google.com/'].concat(iframeHosts)
+    frameSrc: ["'self'", 'https://accounts.google.com/', 'https://content-sheets.googleapis.com/', 'https://content.googleapis.com/'].concat(iframeHosts)
   }
 }))
 
@@ -107,10 +108,8 @@ app.post('/login', (req, res) => {
         );
 });
 
-
 /* PRIVATE PATHS */
 app.use(auth.requiresLogin);
-
 
 app.get('/', (req, res) => {
     res.render('index', {
@@ -118,6 +117,43 @@ app.get('/', (req, res) => {
         apps: appRegs
     });
 });
+
+const invoiceApiUrl = (dateFrom, dateTo) => `https://tripletex.no/v2/invoice?invoiceDateFrom=${dateFrom}&invoiceDateTo=${dateTo}&count=1000&fields=isCreditNote,invoiceDate`
+const tripleTexSessionUrl = (expirationDate) => `https://tripletex.no/v2/token/session/:create?consumerToken=${process.env.TRIPLETEX_CONSUMER_TOKEN}&employeeToken=${process.env.TRIPLETEX_EMPLOYEE_TOKEN}&expirationDate=${expirationDate}`
+const tripleTexSessionExpired = (token) => new Date(token.expirationDate) <= new Date()
+
+const tomorrow = () => {
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
+}
+
+var tripleTexSession = null;
+
+const getTripleTexSession = async () => await (await fetch(tripleTexSessionUrl(tomorrow().toISOString().split('T')[0]), {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })).json()
+
+
+app.get('/invoices', async (req, res) => {
+    if (tripleTexSession === null || tripleTexSessionExpired(tripleTexSession)) {
+        session = await getTripleTexSession()
+        tripleTexSession = session.value
+    }
+    const dateFrom = req.query.dateFrom
+    const dateTo = req.query.dateTo
+    const headers = { 'Authorization': `Basic ${Buffer.from(`0:${tripleTexSession.token}`).toString('base64')}` }
+    fetch( invoiceApiUrl(dateFrom, dateTo), { headers } )
+        .then( invoiceResult => invoiceResult.status === 200 ? invoiceResult.json() : Promise.reject() )
+        .then( data => res.json(data) )
+        .catch( err => {
+            res.status(500).send(err)
+        } )
+})
 
 // Set up paths for each registered app.
 appRegs.forEach((appReg) => {
