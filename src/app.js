@@ -142,7 +142,6 @@ const getTripleTexSession = async () => await (await fetch(tripleTexSessionUrl(t
 app.get('/invoices', async (req, res) => {
     if (tripleTexSession === null || tripleTexSessionExpired(tripleTexSession)) {
         session = await getTripleTexSession()
-        console.log(session)
         tripleTexSession = session.value
     }
     const dateFrom = req.query.dateFrom
