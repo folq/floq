@@ -47,7 +47,7 @@ app.use(helmet.csp({
     scriptSrc: ["'self'", "'unsafe-eval'", 'https://apis.google.com:443', 'https://storage.googleapis.com:443', 'https://use.typekit.net:443', "'unsafe-inline'"].concat(scriptHosts),
     styleSrc: ["'unsafe-inline'", "'self'", "blob:", 'https://fonts.googleapis.com:443', 'https://storage.googleapis.com:443', 'https://fonts.googleapis.com:443'],
     frameSrc: ['https://accounts.google.com:443'],
-    fontSrc: ['data:', 'https://fonts.gstatic.com:443', 'https://use.typekit.net:443'],
+    fontSrc: ['data:', 'https://fonts.gstatic.com:443', 'https://use.typekit.net:443', "'self'"],
     connectSrc: ["'self'", "https://api.cloudinary.com", "https://tripletex.no"].concat(xhrHosts).concat(
       // allow localhost:8080 and localhost:8002 when in dev mode
       process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080', 'http://localhost:8002', 'ws://localhost:8002', 'http://localhost:8081', 'ws://localhost:8081']
