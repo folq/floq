@@ -145,3 +145,7 @@ td.icon-cell {
 .mdl-layout__content {
   will-change: transform;
 }
+
+header {
+  background-color: #6600ff !important;
+}
