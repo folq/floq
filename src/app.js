@@ -52,7 +52,7 @@ app.use(helmet.csp({
       // allow localhost:8080 and localhost:8002 when in dev mode
       process.env.NODE_ENV === 'production' ? [] : ['http://localhost:8080', 'ws://localhost:8080', 'http://localhost:8002', 'ws://localhost:8002', 'http://localhost:8081', 'ws://localhost:8081']
     ),
-    imgSrc: ["'self'", 'data:', 'https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443', 'https://p.typekit.net:443', 'https://res.cloudinary.com'],
+    imgSrc: ["'self'", 'data:', 'https://apis.google.com:443', 'https://www.gravatar.com:443', 'https://source.unsplash.com:443', 'https://images.unsplash.com:443', 'https://p.typekit.net:443', 'https://res.cloudinary.com', 'https://storage.googleapis.com:443'],
     frameSrc: ["'self'", 'https://accounts.google.com/', 'https://content-sheets.googleapis.com/', 'https://content.googleapis.com/'].concat(iframeHosts)
   }
 }))
