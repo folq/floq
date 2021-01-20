@@ -6,7 +6,7 @@ var jwtClient = new ga.JWTClient();
 
 var aud = '1085640931155-0f6l02jv973og8mi4nb124k6qlrh470p.apps.googleusercontent.com';
 var acceptedEmailDomains =
-  (process.env.FLOQ_ACCEPTED_EMAIL_DOMAINS || 'blank.no').split(",");
+  (process.env.FLOQ_ACCEPTED_EMAIL_DOMAINS || 'folq.no').split(",");
 
 const TOKEN_BUFFER_SECONDS = 3600 * 12;
 
